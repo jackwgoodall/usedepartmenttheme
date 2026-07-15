@@ -1,6 +1,0 @@
-{
-  "version": "0.0.1",
-  "configurations": [
-    { "name": "root-preview", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "8766", "--directory", "/Users/lshjg17/Library/Mobile Documents/com~apple~CloudDocs/Documents/R projects/usedepartmenttheme"], "port": 8766 }
-  ]
-}
