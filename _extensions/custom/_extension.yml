@@ -1,0 +1,35 @@
+name: custom
+title: custom HTML Format
+author: Jack Goodall
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    html:
+      # ── Base theme ─────────────────────────────────────────────────────────
+      theme: [cosmo, resources/theme.scss]
+
+      # ── TOC ────────────────────────────────────────────────────────────────
+      toc: true
+      toc-depth: 3
+      toc-title: "Contents"
+
+      # ── Code ───────────────────────────────────────────────────────────────
+      code-fold: true
+      code-tools: true
+      code-summary: "Show code"
+      highlight-style: github
+
+      # ── Output ─────────────────────────────────────────────────────────────
+      embed-resources: true
+      self-contained: true
+
+      # ── Header injection ───────────────────────────────────────────────────
+      include-before-body: resources/header.html
+
+      # ── Execute defaults ───────────────────────────────────────────────────
+      execute:
+        warning: false
+        message: false
+        fig-width: 12
+        fig-height: 7

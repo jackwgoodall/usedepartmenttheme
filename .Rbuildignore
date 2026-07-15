@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.Rhistory$
+^LICENSE\.md$
+^cran-comments\.md$
+^\.claude$
+^\.quarto$
+^_extensions$
+^_quarto\.yml$
+^test\.qmd$
+^test\.html$

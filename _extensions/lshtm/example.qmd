@@ -1,0 +1,27 @@
+---
+title: "Resistance Profiles"
+subtitle: "MRC Gambia — 2024/25"   # optional
+format: lshtm-html
+---
+
+```{r packages}
+#| include: false
+pacman::p_load(dplyr, stringr, tidyr, ggplot2, patchwork)
+load("output/processed/df.Rdata")
+```
+
+# Resistance Patterns
+
+UpSet plots show **co-resistance patterns** — which antibiotics tend to fail
+together in the same isolate.
+
+```{r upset-enterobacterales-urine}
+#| fig-height: 7
+#| out-width: "90%"
+make_upset_3state(
+  df[df$year %in% c("2024", "2025"), ],
+  groups              = "Enterobacterales",
+  sample_type_pattern = "urine",
+  abx_cols            = ABX_URINE
+)
+```

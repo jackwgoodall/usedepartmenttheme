@@ -1,0 +1,64 @@
+<!-- Department branded header bar                                 -->
+<!-- Title/subtitle are read from Quarto's rendered output via JS  -->
+<div class="dept-header" id="dept-header-bar">
+  <div class="dept-header-text">
+    <h1 id="dept-doc-title">Document</h1>
+    <p class="subtitle" id="dept-doc-subtitle" style="display:none;"></p>
+  </div>
+  <img
+    src="_extensions/dept/resources/logo.png"
+    class="dept-logo"
+    alt="Department logo"
+    onerror="this.style.display='none'"
+  />
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var bar = document.getElementById("dept-header-bar");
+
+  var titleEl = document.querySelector(".title");
+  if (titleEl) {
+    var t = document.getElementById("dept-doc-title");
+    if (t) t.textContent = titleEl.textContent;
+  }
+
+  var subtitleEl = document.querySelector(".subtitle");
+  if (subtitleEl) {
+    var s = document.getElementById("dept-doc-subtitle");
+    if (s) {
+      s.textContent = subtitleEl.textContent;
+      s.style.display = "block";
+    }
+  }
+
+  // The `code-tools` button is rendered inside Quarto's title block, which
+  // this theme hides. Move it into the branded header bar so it stays usable
+  // when `code_tools = TRUE`. Quarto uses two variants: a dropdown menu
+  // (`#quarto-code-tools-menu`, when code folding is on) or a single
+  // "View Source" button (`#quarto-code-tools-source`, when it is off). Match
+  // either by class and carry a dropdown menu along only when one exists.
+  var codeTools = document.querySelector(".code-tools-button");
+  if (bar && codeTools) {
+    var menu = codeTools.nextElementSibling; // dropdown <ul>, if any
+    var hasMenu = menu && menu.classList.contains("dropdown-menu");
+    var wrap = document.createElement("div");
+    wrap.className = hasMenu ? "dept-header-tools dropdown" : "dept-header-tools";
+    wrap.appendChild(codeTools);
+    if (hasMenu) {
+      wrap.appendChild(menu);
+    }
+    var logo = bar.querySelector(".dept-logo");
+    if (logo) {
+      bar.insertBefore(wrap, logo);
+    } else {
+      bar.appendChild(wrap);
+    }
+  }
+
+  var content = document.querySelector("#quarto-content");
+  if (bar && content && content.parentNode) {
+    content.parentNode.insertBefore(bar, content);
+  }
+});
+</script>

@@ -1,0 +1,156 @@
+/*-- scss:defaults --*/
+
+// ── Brand colours (injected by usedepartmenttheme at install time) ───────────
+// Do not edit these four lines manually — they are rewritten by .install_theme()
+$dept-primary:       %%DEPT_COLOUR%%;
+$dept-light:         %%DEPT_COLOUR_LIGHT%%;
+$dept-pale:          %%DEPT_COLOUR_PALE%%;
+$dept-header-text:   %%DEPT_HEADER_TEXT%%;   // #ffffff (light headers) or #1a1a1a (dark)
+$dept-header-border: %%DEPT_HEADER_BORDER%%; // subtle bottom border on dark headers
+
+$dept-white:  #ffffff;
+$dept-text:   #212529;
+
+// Quarto theme variable overrides
+$link-color:      $dept-primary;
+$navbar-bg:       $dept-primary;
+$navbar-fg:       $dept-white;
+$sidebar-bg:      $dept-pale;
+$code-block-bg:   #f8f9fa;
+
+/*-- scss:rules --*/
+
+// ── Hide the default Quarto title block ──────────────────────────────────────
+.quarto-title-block {
+  display: none !important;
+}
+
+// ── Branded header bar ───────────────────────────────────────────────────────
+.dept-header {
+  display:       flex;
+  align-items:   center;
+  gap:           16px;
+  padding:       12px 28px;
+  background:    $dept-primary;
+  border-bottom: 2px solid $dept-header-border;
+  margin-bottom: 20px;
+}
+
+// Title/subtitle grow to fill the bar, pushing tools + logo to the right.
+.dept-header-text {
+  flex: 1 1 auto;
+}
+
+// ── Code-tools menu, relocated into the header bar by header.html ────────────
+.dept-header-tools {
+  flex-shrink: 0;
+
+  .code-tools-button {
+    color:            $dept-header-text;
+    border:           1px solid $dept-header-text;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      color:            $dept-primary;
+      background-color: $dept-header-text;
+    }
+  }
+}
+
+.dept-header-text h1 {
+  margin:      0;
+  font-size:   1.35em;
+  font-weight: 700;
+  color:       $dept-header-text !important;
+  line-height: 1.3;
+}
+
+.dept-header-text p.subtitle {
+  margin:    4px 0 0 0;
+  font-size: 0.9em;
+  // Slightly muted relative to header text colour
+  color:     mix($dept-header-text, $dept-primary, 75%);
+}
+
+.dept-logo {
+  height:      52px;
+  width:       auto;
+  flex-shrink: 0;
+}
+
+// ── TOC sidebar branding ─────────────────────────────────────────────────────
+#quarto-sidebar {
+  background:   $dept-pale;
+  border-right: 2px solid $dept-primary;
+}
+
+.sidebar-title {
+  color:       $dept-primary;
+  font-weight: 700;
+}
+
+#quarto-sidebar .sidebar-item-text {
+  color: $dept-text;
+}
+
+#quarto-sidebar .sidebar-item-text:hover {
+  color: $dept-primary;
+}
+
+// ── Headings ─────────────────────────────────────────────────────────────────
+h1, h2 {
+  color:          $dept-primary;
+  border-bottom:  2px solid $dept-pale;
+  padding-bottom: 4px;
+}
+
+h3, h4 {
+  color: $dept-light;
+}
+
+// ── Links ────────────────────────────────────────────────────────────────────
+a {
+  color: $dept-primary;
+  &:hover { color: $dept-light; }
+}
+
+// ── Code blocks ──────────────────────────────────────────────────────────────
+.code-fold-btn {
+  color:            $dept-primary;
+  border-color:     $dept-primary;
+  background-color: $dept-pale;
+}
+
+.code-fold-btn:hover {
+  background-color: $dept-primary;
+  color:            $dept-header-text;
+}
+
+// ── Callout blocks ───────────────────────────────────────────────────────────
+.callout-note {
+  border-left-color: $dept-primary;
+}
+
+.callout-note .callout-icon::before {
+  background-color: $dept-primary;
+}
+
+// ── Tables ───────────────────────────────────────────────────────────────────
+thead {
+  background-color: $dept-primary;
+  color:            $dept-header-text;
+}
+
+// ── Misc utility ─────────────────────────────────────────────────────────────
+.upset-note {
+  font-size:     0.85em;
+  color:         #555;
+  margin-top:    6px;
+  margin-bottom: 18px;
+}
+
+hr {
+  border-color: $dept-pale;
+  margin: 1.5em 0;
+}

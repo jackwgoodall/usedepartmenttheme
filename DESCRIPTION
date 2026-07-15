@@ -1,0 +1,28 @@
+Package: usedepartmenttheme
+Title: Branded 'Quarto' HTML Themes for Departments and Institutes
+Version: 0.1.0
+Authors@R:
+    person("Jack", "Goodall", email = "j.goodall@lshtm.ac.uk", role = c("aut", "cre"))
+Description: Installs a branded 'Quarto' HTML extension (format: dept-html)
+    into your project with one function call. Three department themes are
+    provided: lshtm() and lshtm_mrcg() for LSHTM/MRC Gambia teal branding and
+    florey() for the Florey Institute. A generic custom() theme accepts any
+    logo and base colour: lighter and paler tints are derived automatically
+    from the single hex value, and the header text colour is chosen for
+    readability based on the colour's luminance. Optional 'Quarto' settings
+    such as a table of contents, code folding, and self-contained output are
+    opt-in arguments rather than imposed defaults.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    base64enc,
+    fs,
+    rlang,
+    tools
+Suggests:
+    cli,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
