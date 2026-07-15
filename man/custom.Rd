@@ -94,7 +94,8 @@ for sidebar backgrounds, heading accents, and borders;
 is perceptually dark (WCAG relative luminance), so the header bar stays
 readable whatever colour you pick;
 \item the logo is embedded as a base64 data URI so it renders correctly from
-\code{.qmd} files anywhere in the project tree.
+\code{.qmd} files anywhere in the project tree, and doubles as the browser-tab
+favicon.
 }
 
 The extension is installed to \verb{_extensions/<name>/} under \code{path}, and a

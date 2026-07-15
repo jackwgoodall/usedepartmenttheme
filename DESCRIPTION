@@ -2,7 +2,8 @@ Package: usedepartmenttheme
 Title: Branded 'Quarto' HTML Themes for Departments and Institutes
 Version: 0.1.0
 Authors@R:
-    person("Jack", "Goodall", email = "j.goodall@lshtm.ac.uk", role = c("aut", "cre"))
+    person("Jack", "Goodall", email = "jack.goodall@lshtm.ac.uk", role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-0997-5528"))
 Description: Installs a branded 'Quarto' HTML extension (format: dept-html)
     into your project with one function call. Three department themes are
     provided: lshtm() and lshtm_mrcg() for LSHTM/MRC Gambia teal branding and

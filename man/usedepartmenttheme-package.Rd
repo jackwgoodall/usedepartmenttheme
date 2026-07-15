@@ -24,10 +24,18 @@ settings — table of contents, code folding, self-contained output,
 \code{warning}/\code{message} suppression, and more — are opt-in arguments on each
 install function: pass a value to enable a setting, leave it unset to fall
 back to Quarto's own default. The primary colour and logo can be
-overridden for any theme.
+overridden for any theme, and the logo is also used as the browser-tab
+favicon.
+
+Much of this can also be achieved with Quarto's own branding support
+(\verb{_brand.yml}); see
+\url{https://quarto.org/docs/reference/metadata/brand.html}. This package
+packages a few opinionated department themes as an installable extension so
+collaborators can render with a single \verb{format:} key and no per-project
+setup.
 }
 \author{
-\strong{Maintainer}: Jack Goodall \email{j.goodall@lshtm.ac.uk}
+\strong{Maintainer}: Jack Goodall \email{jack.goodall@lshtm.ac.uk} (\href{https://orcid.org/0000-0003-0997-5528}{ORCID})
 
 }
 \keyword{internal}
