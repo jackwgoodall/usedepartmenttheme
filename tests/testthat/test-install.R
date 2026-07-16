@@ -75,6 +75,12 @@ test_that("custom() installs a complete extension", {
   expect_false(any(grepl("%%", fav, fixed = TRUE)))
   expect_true(any(grepl("include-in-header: resources/favicon.html",
                         yml, fixed = TRUE)))
+
+  # header relocates document metadata (author, date, ...) out of the hidden
+  # title block, and its own subtitle uses a non-colliding class
+  expect_true(any(grepl("quarto-title-meta", html, fixed = TRUE)))
+  expect_true(any(grepl('class="dept-subtitle"', html, fixed = TRUE)))
+  expect_false(any(grepl('class="subtitle"', html, fixed = TRUE)))
 })
 
 test_that("an explicit favicon overrides the logo", {

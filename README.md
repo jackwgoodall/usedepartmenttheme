@@ -11,7 +11,7 @@
 A quick and easy way to format your [Quarto](https://quarto.org/) documents with you academic department's theme and you standard Quarto preferences. 
 You set these once and then they are applied by a simple tweak to the YAML.
 The package currently has four default themes build in plus a function to supply your own logo and colour scheme.
-To have your department added to this package please either add it yourself with a pull request or open an issue on the [GitHub page](https://github.com/jackwgoodall/usedepartmenttheme).
+To have your department added to this package please either add it yourself with a pull request or [open an issue](https://github.com/jackwgoodall/usedepartmenttheme/issues).
 
 ## Themes
 
@@ -33,6 +33,10 @@ across a project is now supported natively by Quarto through a `_brand.yml`
 file:
 
 > **Quarto branding:** <https://quarto.org/docs/reference/metadata/brand.html>
+
+or through the use of Quarto projects:
+
+> **Quarto projects:** <https://quarto.org/docs/projects/quarto-projects.html>
 
 `usedepartmenttheme` exists to streamline this as an installable
 Quarto extension, so you and your collaborators can render with a single `format:` key and no

@@ -4,8 +4,8 @@
 ^LICENSE\.md$
 ^cran-comments\.md$
 ^\.claude$
-^\.quarto$
-^_freeze$
+(^|/)\.quarto$
+(^|/)_freeze$
 ^_extensions$
 ^_quarto\.yml$
 # Stray Quarto render artifacts at the package root (scratch docs, _files dirs)

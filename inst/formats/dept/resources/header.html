@@ -3,7 +3,7 @@
 <div class="dept-header" id="dept-header-bar">
   <div class="dept-header-text">
     <h1 id="dept-doc-title">Document</h1>
-    <p class="subtitle" id="dept-doc-subtitle" style="display:none;"></p>
+    <p class="dept-subtitle" id="dept-doc-subtitle" style="display:none;"></p>
   </div>
   <img
     src="_extensions/dept/resources/logo.png"
@@ -30,6 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
       s.textContent = subtitleEl.textContent;
       s.style.display = "block";
     }
+  }
+
+  // Author, date, and any other document metadata live in Quarto's title
+  // block, which this theme hides. Move the whole meta block into the header
+  // bar so whatever the author put in the YAML (author, date, affiliations,
+  // DOI, ...) stays visible.
+  var meta    = document.querySelector(".quarto-title-meta");
+  var textBox = bar ? bar.querySelector(".dept-header-text") : null;
+  if (meta && textBox && meta.textContent.trim() !== "") {
+    textBox.appendChild(meta);
   }
 
   // The `code-tools` button is rendered inside Quarto's title block, which

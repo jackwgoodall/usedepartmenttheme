@@ -17,3 +17,6 @@ contributes:
       # Written here only for the arguments you pass to the install function
       # (toc, code-fold, self-contained, warning/message, ...). Anything you
       # leave unset is omitted so Quarto's own default applies.
+      toc: true
+      toc-depth: 3
+      code-tools: true

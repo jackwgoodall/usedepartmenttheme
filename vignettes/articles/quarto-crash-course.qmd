@@ -7,7 +7,7 @@ date-format: "[Last rendered] DD-MM-YYYY"
 bibliography: references.bib
 link-citations: true
 format:
-  html:
+  html-lshtm:
     toc: true
     toc-depth: 4
     code-fold: true

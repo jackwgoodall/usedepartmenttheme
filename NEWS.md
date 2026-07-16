@@ -15,5 +15,9 @@
   bar. A dedicated favicon can be supplied with `favicon = `; otherwise a
   bundled per-department `favicon.png` is used when present, falling back to
   the logo.
+* The branded header bar now shows document metadata — `author`, `date`, and
+  anything else in Quarto's title block — as well as the title and subtitle.
+  Also fixes a clash where the header's own subtitle element hid the
+  document's subtitle, and a stray underline on the header title.
 * README notes that Quarto's native branding (`_brand.yml`) covers many of
   the same needs.
