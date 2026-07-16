@@ -1,8 +1,12 @@
 # usedepartmenttheme
 
 <!-- badges: start -->
-  [![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
-  <!-- badges: end -->
+[![lint](https://github.com/jackwgoodall/jackwgoodall/actions/workflows/lint.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/jackwgoodall/jackwgoodall/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml)
+[![codecov](https://codecov.io/gh/jackwgoodall/jackwgoodall/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ACCIDDA/hestia)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+<!-- badges: end -->
 
 A quick and easy way to format your [Quarto](https://quarto.org/) documents with you academic department's theme and you standard Quarto preferences. 
 You set these once and then they are applied by a simple tweak to the YAML.

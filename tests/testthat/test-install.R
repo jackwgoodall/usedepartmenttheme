@@ -214,7 +214,10 @@ test_that("custom() without a logo installs and warns nowhere fatal", {
 
   expect_no_error(suppressMessages(custom(colour = "#0D5257", path = dir)))
   expect_false(
-    file.exists(file.path(dir, "_extensions", "custom", "resources", "logo.png"))
+    file.exists(file.path(dir, "_extensions",
+                          "custom",
+                          "resources",
+                          "logo.png"))
   )
 })
 

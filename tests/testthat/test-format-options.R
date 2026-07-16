@@ -23,15 +23,21 @@ test_that("execute-level options are nested under execute:", {
 })
 
 test_that("logical flags render as lowercase yaml booleans", {
-  expect_equal(.build_format_lines(list(code_fold = FALSE)), "      code-fold: false")
-  expect_equal(.build_format_lines(list(code_fold = TRUE)),  "      code-fold: true")
+  expect_equal(.build_format_lines(list(code_fold = FALSE)),
+               "      code-fold: false")
+  expect_equal(.build_format_lines(list(code_fold = TRUE)),
+               "      code-fold: true")
 })
 
 test_that(".validate_format_options rejects bad types", {
-  expect_error(.validate_format_options(list(toc = "yes")), "TRUE, FALSE")
-  expect_error(.validate_format_options(list(toc = NA)), "TRUE, FALSE")
-  expect_error(.validate_format_options(list(toc_depth = "deep")), "single number")
-  expect_error(.validate_format_options(list(highlight_style = 1)), "single string")
+  expect_error(.validate_format_options(list(toc = "yes")),
+               "TRUE, FALSE")
+  expect_error(.validate_format_options(list(toc = NA)),
+               "TRUE, FALSE")
+  expect_error(.validate_format_options(list(toc_depth = "deep")),
+               "single number")
+  expect_error(.validate_format_options(list(highlight_style = 1)),
+               "single string")
 })
 
 test_that(".validate_format_options accepts NULLs and valid values", {

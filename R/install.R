@@ -68,16 +68,17 @@
 
   fs::dir_copy(src, dest_root)
 
-  # ── Inject name/title + optional format settings into _extension.yml ─────────
+  # Inject name/title +
+  #  optional format settings into _extension.yml ---
   yml_path <- fs::path(dest_root, "_extension.yml")
   .inject_yml(yml_path, dept_id, title)
   .inject_format_options(yml_path, format_options)
 
-  # ── Inject colours into theme.scss ──────────────────────────────────────────
+  # Inject colours into theme.scss ---
   scss_path <- fs::path(dest_root, "resources", "theme.scss")
   .inject_colours(scss_path, colour, dark_header)
 
-  # ── Resolve logo file path ───────────────────────────────────────────────────
+  # Resolve logo file path ---
   dest_logo <- fs::path(dest_root, "resources", "logo.png")
 
   if (!is.null(logo)) {
@@ -90,7 +91,9 @@
         ))
       } else {
         rlang::warn(paste0(
-          "Logo not found at `", logo_path, "`. Falling back to bundled default."
+          "Logo not found at `",
+          logo_path,
+          "`. Falling back to bundled default."
         ))
         .copy_bundled_logo(dept, dest_logo)
       }
@@ -101,7 +104,7 @@
     .copy_bundled_logo(dept, dest_logo)
   }
 
-  # ── Embed logo as base64 data URI in header.html and the favicon ─────────────
+  # Embed logo as base64 data URI in header.html and the favicon ---
   # A relative src path breaks when .qmd files are in subdirectories because
   # the browser resolves it relative to the .qmd, not the project root.
   # Embedding as a data URI makes the logo path-independent, and lets the same
@@ -117,7 +120,7 @@
   favicon_html <- fs::path(dest_root, "resources", "favicon.html")
   .inject_favicon(favicon_html, fav$uri)
 
-  # ── Ensure _quarto.yml exists so subfolders can find the extension ───────────
+  # ── Ensure _quarto.yml exists so subfolders can find the extension ---
   quarto_yml <- fs::path(path, "_quarto.yml")
   if (!fs::file_exists(quarto_yml)) {
     fs::file_create(quarto_yml)
@@ -145,12 +148,15 @@
     "i" = paste0("Location : ", dest_root),
     "i" = paste0("Colour   : ", colour),
     "i" = paste0("Header   : ",
-                 if (dark_header || .is_dark(colour)) "white text on dark colour"
+                 if (dark_header || .is_dark(colour))
+                   "white text on dark colour"
                  else "dark text on light colour"),
     "i" = paste0("Logo     : ", logo_label),
     "i" = paste0("Favicon  : ", fav$label),
     "i" = paste0("Options  : ", opts_label),
-    "i" = paste0("Format   : add `format: ", dept_id, "-html` to your document YAML.")
+    "i" = paste0("Format   : add `format: ",
+                 dept_id,
+                 "-html` to your document YAML.")
   ))
 
   invisible(dest_root)
@@ -160,7 +166,8 @@
 #' @noRd
 .inject_yml <- function(yml_path, dept_id, title) {
   yml   <- readLines(yml_path, warn = FALSE)
-  if (is.null(title) || is.na(title)) title <- paste(toupper(dept_id), "HTML Format")
+  if (is.null(title) || is.na(title)) title <- paste(toupper(dept_id),
+                                                     "HTML Format")
   yml <- gsub("%%DEPT_NAME%%",  dept_id, yml, fixed = TRUE)
   yml <- gsub("%%DEPT_TITLE%%", title,   yml, fixed = TRUE)
   writeLines(yml, yml_path)
@@ -178,7 +185,7 @@
   for (nm in intersect(flags, names(opts))) {
     v <- opts[[nm]]
     if (!is.null(v) &&
-        !(is.logical(v) && length(v) == 1L && !is.na(v))) {
+          !(is.logical(v) && length(v) == 1L && !is.na(v))) {
       rlang::abort(paste0("`", nm, "` must be TRUE, FALSE, or NULL."))
     }
   }
@@ -186,7 +193,7 @@
   for (nm in intersect(nums, names(opts))) {
     v <- opts[[nm]]
     if (!is.null(v) &&
-        !(is.numeric(v) && length(v) == 1L && !is.na(v))) {
+          !(is.numeric(v) && length(v) == 1L && !is.na(v))) {
       rlang::abort(paste0("`", nm, "` must be a single number or NULL."))
     }
   }
@@ -213,22 +220,43 @@
   add   <- function(lines, key, val) c(lines, paste0(ind, key, ": ", val))
 
   if (!is.null(opts$toc))             lines <- add(lines, "toc", yn(opts$toc))
-  if (!is.null(opts$toc_depth))       lines <- add(lines, "toc-depth", as.integer(opts$toc_depth))
-  if (!is.null(opts$code_fold))       lines <- add(lines, "code-fold", yn(opts$code_fold))
-  if (!is.null(opts$code_tools))      lines <- add(lines, "code-tools", yn(opts$code_tools))
-  if (!is.null(opts$number_sections)) lines <- add(lines, "number-sections", yn(opts$number_sections))
-  if (!is.null(opts$highlight_style)) lines <- add(lines, "highlight-style", opts$highlight_style)
+  if (!is.null(opts$toc_depth))       lines <- add(lines,
+                                                   "toc-depth",
+                                                   as.integer(opts$toc_depth))
+  if (!is.null(opts$code_fold))       lines <- add(lines,
+                                                   "code-fold",
+                                                   yn(opts$code_fold))
+  if (!is.null(opts$code_tools))      lines <- add(lines,
+                                                   "code-tools",
+                                                   yn(opts$code_tools))
+  if (!is.null(opts$number_sections)) lines <- add(lines,
+                                                   "number-sections",
+                                                   yn(opts$number_sections))
+  if (!is.null(opts$highlight_style)) lines <- add(lines,
+                                                   "highlight-style",
+                                                   opts$highlight_style)
   if (!is.null(opts$self_contained)) {
     lines <- add(lines, "embed-resources", yn(opts$self_contained))
     lines <- add(lines, "self-contained",  yn(opts$self_contained))
   }
 
   exec <- character(0)
-  if (!is.null(opts$warning))    exec <- c(exec, paste0(ind2, "warning: ",    yn(opts$warning)))
-  if (!is.null(opts$message))    exec <- c(exec, paste0(ind2, "message: ",    yn(opts$message)))
-  if (!is.null(opts$fig_width))  exec <- c(exec, paste0(ind2, "fig-width: ",  opts$fig_width))
-  if (!is.null(opts$fig_height)) exec <- c(exec, paste0(ind2, "fig-height: ", opts$fig_height))
-  if (length(exec)) lines <- c(lines, paste0(ind, "execute:"), exec)
+  if (!is.null(opts$warning))    exec <- c(exec,
+                                           paste0(ind2,
+                                                  "warning: ",
+                                                  yn(opts$warning)))
+  if (!is.null(opts$message))    exec <- c(exec, paste0(ind2,
+                                                        "message: ",
+                                                        yn(opts$message)))
+  if (!is.null(opts$fig_width))  exec <- c(exec, paste0(ind2,
+                                                        "fig-width: ",
+                                                        opts$fig_width))
+  if (!is.null(opts$fig_height)) exec <- c(exec, paste0(ind2,
+                                                        "fig-height: ",
+                                                        opts$fig_height))
+  if (length(exec)) lines <- c(lines, paste0(ind,
+                                             "execute:"),
+                               exec)
 
   lines
 }
@@ -298,7 +326,8 @@
     }
   }
 
-  # 2. Bundled per-department favicon.png (optional; not every department has one)
+  # 2. Bundled per-department favicon.png
+  # (optional; not every department has one)
   if (!is.null(dept)) {
     bundled <- system.file(file.path("logos", dept, "favicon.png"),
                            package = "usedepartmenttheme")
@@ -458,7 +487,8 @@
   .rgb_to_hex(rgb + amount * (white - rgb))
 }
 
-#' Return TRUE when a colour is perceptually dark (WCAG relative luminance < 0.35)
+#' Return TRUE when a colour is perceptually dark
+#' (WCAG relative luminance < 0.35)
 #' @noRd
 .is_dark <- function(hex) {
   rgb <- .hex_to_rgb(hex) / 255
