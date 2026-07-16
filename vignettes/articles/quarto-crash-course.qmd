@@ -1,0 +1,567 @@
+---
+title: "Quarto: a crash course"
+subtitle: "Writing reproducible, branded reports (with or without Quarto and usedepartmenttheme)"
+author: "Jack Goodall"
+date: last-modified
+date-format: "[Last rendered] DD-MM-YYYY"
+bibliography: references.bib
+link-citations: true
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    code-fold: true
+    code-tools: true
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+# Options that apply to the whole document.
+options(scipen = 999, digits = 2)  # no scientific notation; round to 2 dp
+```
+
+# Overview
+
+This is a crash course in [Quarto](https://quarto.org) — the next-generation,
+multi-language successor to R Markdown — and a guide to applying your
+department's branding with the
+[**usedepartmenttheme**](https://github.com/jackwgoodall/usedepartmenttheme)
+package.
+
+Although it is aimed at users of `usedepartmenttheme`, I hope it is of broader
+interest, and anyone is welcome to use and adapt it. It has three aims:
+
+1.  To show what a `usedepartmenttheme` document looks like when rendered.
+2.  To explain how to install, use, and customise the themes.
+3.  To provide a tutorial on Quarto for people who know R but are new to
+    Quarto (or coming from R Markdown).
+
+If you are new to markdown, I also hope to convert you: Quarto is a
+powerful way to communicate pre-publication research findings with colleagues
+and collaborators, wrapping a narrative around your data and code.
+
+If you are already comfortable with R Markdown or Quarto, the
+[Applying a theme](#applying-a-department-theme) section is all you need to get
+going. If you are new to it, I suggest reading through in order.
+If you don't care about the `usedepartmenttheme` you can skip to [Anatomy of a Quarto document](#anatomy). 
+
+For more depth (including how to make PDFs, Word documents, books, websites,
+or dashboards) the [Quarto guide](https://quarto.org/docs/guide/) is excellent,
+as is the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/),
+most of which still applies.
+
+In homage to the original R Markdown tutorial, the examples use base R's
+built-in `pressure` and `cars` datasets [@mcneil1977interactive].
+
+If you have questions, suggestions, or would like to contribute, please
+[open an issue](https://github.com/jackwgoodall/usedepartmenttheme/issues) on
+the GitHub page.
+
+::: {.callout-note}
+## Quarto or R Markdown?
+
+Quarto is the successor to R Markdown. Documents use the `.qmd` extension and
+most of your R Markdown knowledge carries straight over, with a few syntax
+refreshes noted throughout this page (chunk options move to `#|` comments,
+inline code gains braces, tabsets become fenced `::: {.panel-tabset}`
+blocks, and `output:` becomes `format:`). Unlike R Markdown, one Quarto install
+works across R, Python, and Julia, and ships its own command-line tool, so it
+does not depend on any single R package.
+:::
+
+# Applying a department theme {#applying-a-department-theme}
+
+`usedepartmenttheme` installs a branded Quarto HTML extension into your project
+with a single function call. Your `.qmd` files then need only a `format:` key.
+
+1.  Install the package (installs `pak` first if you don't have it):
+
+    ```{r}
+    #| eval: false
+    if (!require("pak", quietly = TRUE)) install.packages("pak")
+    pak::pkg_install("jackwgoodall/usedepartmenttheme")
+    ```
+
+2.  In your **project root** (the folder containing your `.qmd` files), run the
+    installer for your department once. For the Florey Institute:
+
+    ```{r}
+    #| eval: false
+    usedepartmenttheme::florey()
+    ```
+
+    Other themes are `lshtm()`, `lshtm_mrcg()` (MRC Unit The Gambia), and
+    `lshtm_mrcu()` (MRC Unit Uganda). This creates an `_extensions/` folder
+    (commit it to version control so collaborators can render without the
+    package installed) and a `_quarto.yml`.
+
+3.  Add the matching `format:` key to your document's YAML (the Console output provides you with this):
+
+    ``` yaml
+    ---
+    title: "My analysis"
+    format: florey-html
+    ---
+    ```
+
+4.  Render (the **Render** button in RStudio, or `quarto render`). You should
+    get an HTML file with the department's branded header bar, logo, and a
+    matching browser-tab favicon.
+
+## Overriding the colour, logo, or favicon
+
+Every theme accepts a `colour`, `logo`, and `favicon`:
+
+```{r}
+#| eval: false
+usedepartmenttheme::florey(logo = "images/my-logo.png", colour = "#450099")
+```
+
+## Not one of the departments?
+
+Use `custom()` with your own base colour and logo — the package derives the
+lighter/paler tints and a readable header-text colour automatically:
+
+```{r}
+#| eval: false
+usedepartmenttheme::custom(colour = "#003865", logo = "images/logo.png",
+                           name = "My Lab")
+```
+
+::: {.callout-tip}
+The themes impose no document defaults of their own — options like `toc`,
+`code_fold`, and `self_contained` are opt-in arguments on every installer.
+See the [package README](https://github.com/jackwgoodall/usedepartmenttheme)
+for the full list.
+:::
+
+# Anatomy of a Quarto document {#anatomy}
+
+A Quarto document is made up of:
+
+-   the YAML header,
+-   formatted text,
+-   code chunks.
+
+The **YAML header** (*"YAML Ain't Markup Language"* — recursive acronyms are
+big in coding circles) tells Quarto how to render the document. The only
+essential entry is `format:`; I'd suggest `html` for almost all tasks (though
+PDF and Word have their uses). There is much more the header can do to make
+documents more accessible, as you'll see.
+
+**Formatted text** is what makes Quarto so good for sharing pre-publication
+work: it lets you build a narrative around the data you want to present. The
+options are shown in the [Formatting](#formatting) section.
+
+**Code chunks** are sections of R code that either set things up or produce an
+output to show. Code inside a chunk behaves much like normal R — but plots and
+console output appear directly after the chunk that created them.
+
+# Code chunks {#code-chunks}
+
+## Inserting a chunk
+
+All executable code lives in code chunks, framed by ```` ```{r} ```` at the
+start and ```` ``` ```` at the end. Insert one manually, with the **Insert**
+menu, or with `Ctrl`/`Cmd` + `Alt` + `I`.
+
+You can give a chunk a label after the `r`, which makes it easier to find later
+(it appears in the editor's outline). The chunk below shows its own source (via
+the `echo: fenced` option) followed by its result:
+
+```{r}
+#| label: chunk-one
+#| echo: fenced
+1 + 1
+```
+
+## Setting chunk options
+
+In Quarto, chunk options are written *inside* the chunk on special `#|`
+("hash-pipe") comment lines, rather than in the chunk header as in R Markdown.
+They sit just below the opening ```` ```{r} ````. For example, these lines label
+a chunk and hide its code while keeping the output:
+
+``` r
+#| label: chunk-two
+#| echo: false
+```
+
+Rather than repeat options on every chunk, set document-wide defaults in the
+YAML `execute:` block (see the top of this file):
+
+``` yaml
+execute:
+  warning: false
+  message: false
+```
+
+This document uses:
+
+-   `code-fold: true` in the YAML, so code is shown but hidden behind a
+    **Code** toggle by default — a nice compromise between collaborators who
+    want to see the code and those who just want the content. Click **▸ Code**
+    on any chunk to expand it.
+-   `warning: false` and `message: false`, so warnings and messages are hidden
+    in the output. Watch for them while you're *building* the document, as they
+    won't surface in the render.
+-   `options(scipen = 999, digits = 2)` (in the hidden `setup` chunk) to switch
+    off scientific notation and round to two decimal places. Adjust to taste.
+
+The most useful per-chunk options are:
+
+| Option | Effect |
+|---|---|
+| `echo: false` | Hide the code, keep its output |
+| `eval: false` | Show the code but don't run it |
+| `include: false` | Run the code but hide both it and its output |
+| `output: false` | Run and show the code but hide its output |
+| `warning: false` / `message: false` | Hide warnings / messages |
+
+A per-chunk option always takes precedence over the document default. So to
+show every chunk except one, keep the default and add `#| echo: false` to that
+one chunk.
+
+If you'll be doing heavy data processing, it's also worth reading about
+[caching](https://quarto.org/docs/computations/caching.html) and Quarto's
+[freeze](https://quarto.org/docs/projects/code-execution.html#freeze) feature.
+
+## Loading packages
+
+Packages used in the render must be loaded *in the document*, not just in your
+session. A robust pattern is to bootstrap `pacman` and let it install and load
+everything else:
+
+```{r}
+#| label: packages
+if (!require("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(tidyverse, kableExtra)
+```
+
+I also set a global `ggplot2` theme once, up front, so every plot inherits it
+(discussed in [Plot themes](#plot-themes)):
+
+```{r}
+#| label: ggplot-theme
+theme_set(
+  theme_minimal() +
+    theme(
+      panel.grid.major = element_blank(),        # remove major grid lines
+      panel.grid.minor = element_blank(),        # remove minor grid lines
+      panel.background = element_blank(),         # remove the background
+      axis.line        = element_line(colour = "black")  # solid axis line
+    )
+)
+```
+
+# Formatting {#formatting}
+
+Create headings with increasing numbers of hashes (`#`) — the more hashes, the
+smaller the heading. Anything up to level 4 (`####`) appears in the floating
+table of contents (controlled by `toc-depth:` in the YAML).
+
+## Headings
+
+This is heading 2 (`##`).
+
+### Heading 3
+
+This is heading 3 (`###`).
+
+#### Heading 4
+
+This is heading 4 (`####`).
+
+##### Heading 5
+
+Heading 5 (`#####`) still renders, but won't appear in the table of contents
+given our `toc-depth: 4`.
+
+## Text options
+
+| Input | Output |
+|---|:---:|
+| `**Two asterisks**` | **makes text bold** |
+| `*One asterisk*` | *italicises text* |
+| `***Three asterisks***` | ***does both*** |
+| `` `Single backticks` `` | `format as code` |
+| `~~Two tildes~~` | ~~cross out~~ |
+
+Links are made by putting the text in square brackets followed by the URL in
+round brackets, with no space between:
+
+``` markdown
+[Link](https://github.com/jackwgoodall/usedepartmenttheme/)
+```
+
+makes [Link](https://github.com/jackwgoodall/usedepartmenttheme/).
+
+Equations are wrapped in `$` for inline and `$$` for displayed maths:
+
+$$
+\sum_{i = 1}^{n}{(this..is..an..equation)^2}
+$$
+
+A reference for mathematical notation is
+[here](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html).
+
+## Dividing lines
+
+Three or more asterisks make a horizontal rule:
+
+***
+
+A heavier divide can be made with a little HTML:
+
+``` html
+<hr style="border: 1px solid black; width: 100%; margin: 1em 0;">
+```
+
+<hr style="border: 1px solid black; width: 100%; margin: 1em 0;">
+
+(swap `black` for another colour name or hex code to match your style).
+
+## Spaces
+
+Markdown largely ignores whitespace. Two spaces at the end of a line start a
+new line; for something more explicit (or multiple blank lines) insert `<br>`.
+`&nbsp;` inserts a non-breaking space.
+
+## Tables
+
+Tables can be written by hand (as in [Text options](#text-options) above), but
+more elegant ones come from piping a data frame into **kableExtra**:
+
+```{r}
+#| label: kable-demo
+table(pressure$temperature[1:5], pressure$pressure[1:5]) |>
+  kbl(caption = "A hover table") |>
+  kable_paper("hover", full_width = FALSE)
+```
+
+Many more options are documented on the
+[kableExtra site](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+
+# R code in formatted text
+
+You can drop values from R objects straight into your prose, so statements
+update automatically when the data changes. Inline code in Quarto is written in
+back ticks with a leading `{r}` marker:
+
+``` markdown
+The median pressure is `{r} median(pressure$pressure)`.
+```
+
+which renders as:
+
+> The median pressure of the `pressure` dataset is
+> `{r} median(pressure$pressure)`.
+
+If the data changed, that number would update on the next render. (This is a
+change from R Markdown, where the marker was just `r`, without the braces.)
+
+# Tabsets
+
+Tabs are one of the most effective ways to make a data-rich document
+approachable. In Quarto, wrap a set of same-level headings in a fenced
+`::: {.panel-tabset}` block; each heading becomes a tab:
+
+::: {.panel-tabset}
+
+## Standard
+
+```{r}
+#| label: pressure-standard
+p <- pressure |>
+  ggplot(aes(x = temperature, y = pressure)) +
+  geom_point()
+p
+```
+
+## Red dots
+
+```{r}
+#| label: pressure-red
+p + geom_point(colour = "red", size = 4)
+```
+
+## Blue triangles
+
+```{r}
+#| label: pressure-blue
+p + geom_point(colour = "#093daf", size = 4, shape = 17)
+```
+
+:::
+
+(In R Markdown this was done with a `{.tabset}` attribute on the parent
+heading; the fenced-div approach is the Quarto equivalent.)
+
+# Plots
+
+## Absolute plot size
+
+Set the rendered size with the `fig-width` and `fig-height` chunk options (in
+inches):
+
+```{r}
+#| label: fig-abs
+#| fig-width: 2
+#| fig-height: 3
+p + geom_point(colour = "#093daf", size = 4, shape = 17)
+```
+
+## Relative plot size
+
+How much of the page a figure occupies is set with `out-width` (and
+`out-height`):
+
+```{r}
+#| label: fig-rel
+#| out-width: "50%"
+p + geom_point(colour = "#093daf", size = 4, shape = 17)
+```
+
+## Side by side
+
+Quarto lays multiple outputs out for you with `layout-ncol`:
+
+```{r}
+#| label: fig-side-by-side
+#| layout-ncol: 2
+#| fig-cap:
+#|   - "Figure 1"
+#|   - "Figure 2"
+p + geom_point(colour = "#093daf", size = 4, shape = 17)
+p + geom_point(colour = "#c21033", size = 4, shape = 17)
+```
+
+(This replaces R Markdown's `out.width = "50%"` + `fig.show = "hold"` recipe.)
+
+## Plot themes {#plot-themes}
+
+As in ordinary ggplot2 code you can switch themes (`theme_minimal()` is
+popular). Because we called `theme_set()` at the top of the document, every
+plot inherits that look unless it specifies its own:
+
+```{r}
+#| label: fig-themes
+#| layout-ncol: 2
+p + geom_point(colour = "#c21033", size = 4, shape = 17) +
+  ggtitle("This…") +
+  theme(plot.title = element_text(size = 24))
+
+p + geom_point(colour = "#c21033", size = 4, shape = 17) +
+  ggtitle("…rather than this") +
+  theme_grey() +
+  theme(plot.title = element_text(size = 24))
+```
+
+# Callouts
+
+Quarto's callout blocks are a clean way to flag notes, tips, and warnings — a
+feature R Markdown lacks. Write them as fenced divs:
+
+``` markdown
+::: {.callout-warning}
+Mind the gap.
+:::
+```
+
+::: {.callout-note}
+A neutral note.
+:::
+
+::: {.callout-tip}
+A helpful tip.
+:::
+
+::: {.callout-warning}
+Something to be careful about.
+:::
+
+# References
+
+## Style
+
+Citations come from a BibTeX file referenced in the YAML (`bibliography:`). The
+formatting style can be changed with a Citation Style Language file: download
+one from [Zotero's style repository](https://www.zotero.org/styles), put it in
+your project, and point `csl:` at it. For example, to use Nature's style:
+
+``` yaml
+bibliography: references.bib
+csl: nature.csl
+link-citations: true
+```
+
+## Building the BibTeX file
+
+The easiest way to build a `.bib` file is a reference manager such as Zotero —
+right-click one or more items to export, or **File → Export Library** for the
+whole thing. Online tools can also turn DOIs into BibTeX.
+
+## Citing in the text
+
+An inline citation is an `@` followed by the reference key (`mcneil1977interactive`
+here), which renders as @mcneil1977interactive. Because we set
+`link-citations: true`, it hyperlinks to the bibliography. Adding a
+`# References` heading at the end of the document renders the bibliography there
+automatically.
+
+# Cross-references
+
+Link to another section by putting text in square brackets followed by the
+heading's slug — lower case, no punctuation, spaces as hyphens:
+
+``` markdown
+[the formatting section](#formatting)
+```
+
+gives [the formatting section](#formatting). Quarto also has a richer
+cross-referencing system (label a section `{#sec-foo}` and refer to it with
+`@sec-foo` when `number-sections: true`); see the
+[Quarto docs](https://quarto.org/docs/authoring/cross-references.html).
+
+# The YAML, annotated
+
+Most of these have appeared already; here is the full header for this document
+with a note on each line. YAML is space-sensitive — child lines are indented
+under their parent.
+
+``` yaml
+title: "Quarto: a crash course"        # document title
+subtitle: "…"                          # optional subtitle
+author: "Jack Goodall"                 # your name
+date: last-modified                    # auto-fills the last render date
+date-format: "[Last rendered] DD-MM-YYYY"  # UK-style date
+bibliography: references.bib           # BibTeX source for citations
+link-citations: true                   # hyperlink citations to the bibliography
+format:
+  html:                                # render to HTML
+    toc: true                          # add a table of contents
+    toc-depth: 4                       # include headings down to level 4
+    code-fold: true                    # show code, but folded by default
+    code-tools: true                   # add the document code menu
+execute:
+  warning: false                       # hide warnings document-wide
+  message: false                       # hide messages document-wide
+```
+
+When you install a `usedepartmenttheme` extension, you'd swap the whole
+`format:` block for a single key such as `format: florey-html`, and the theme
+supplies the styling, header, and favicon for you.
+
+# Conclusions
+
+I hope this crash course has been useful. I'd love your feedback — good or bad —
+via an [issue on the package page](https://github.com/jackwgoodall/usedepartmenttheme/issues).
+
+# References
+
+::: {#refs}
+:::

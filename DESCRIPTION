@@ -28,5 +28,6 @@ Suggests:
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3
+Config/Needs/website: quarto, pacman, tidyverse, kableExtra
 URL: https://github.com/jackwgoodall/usedepartmenttheme, https://jackwgoodall.github.io/usedepartmenttheme/
 BugReports: https://github.com/jackwgoodall/usedepartmenttheme/issues
