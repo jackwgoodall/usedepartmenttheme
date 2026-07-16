@@ -11,6 +11,8 @@
   every install function; anything left unset falls back to Quarto's own
   default.
 * The logo is embedded as the browser-tab favicon as well as in the header
-  bar.
+  bar. A dedicated favicon can be supplied with `favicon = `; otherwise a
+  bundled per-department `favicon.png` is used when present, falling back to
+  the logo.
 * README notes that Quarto's native branding (`_brand.yml`) covers many of
   the same needs.

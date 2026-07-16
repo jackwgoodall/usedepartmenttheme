@@ -19,6 +19,9 @@
 #'   `.qmd` files in subfolders can resolve the extension.
 #' @param logo Path to a PNG, SVG, or JPEG logo file. If `NULL`, the bundled
 #'   LSHTM placeholder logo is used.
+#' @param favicon Optional path to a dedicated favicon image (PNG, SVG, ICO,
+#'   ...). If `NULL`, a bundled `favicon.png` for the department is used when
+#'   present, otherwise the logo doubles as the favicon.
 #' @param colour Primary brand colour as a hex string. Defaults to LSHTM teal
 #'   (`"#0D5257"`). Lighter and paler tints are derived automatically.
 #' @param overwrite If `TRUE`, replace an existing `_extensions/lshtm/`
@@ -71,6 +74,7 @@
 #' }
 lshtm <- function(path            = ".",
                   logo            = NULL,
+                  favicon         = NULL,
                   colour          = "#0D5257",
                   overwrite       = FALSE,
                   toc             = NULL,
@@ -88,6 +92,7 @@ lshtm <- function(path            = ".",
     dept           = "lshtm",
     path           = path,
     logo           = logo,
+    favicon        = favicon,
     colour         = colour,
     dark_header    = FALSE,
     overwrite      = overwrite,
@@ -110,6 +115,7 @@ lshtm <- function(path            = ".",
 #' }
 lshtm_mrcg <- function(path            = ".",
                        logo            = NULL,
+                       favicon         = NULL,
                        colour          = "#0D5257",
                        overwrite       = FALSE,
                        toc             = NULL,
@@ -127,6 +133,7 @@ lshtm_mrcg <- function(path            = ".",
     dept           = "lshtm_mrcg",
     path           = path,
     logo           = logo,
+    favicon        = favicon,
     colour         = colour,
     dark_header    = FALSE,
     overwrite      = overwrite,
@@ -150,6 +157,7 @@ lshtm_mrcg <- function(path            = ".",
 #' }
 florey <- function(path            = ".",
                    logo            = NULL,
+                   favicon         = NULL,
                    colour          = "#1a1a1a",
                    overwrite       = FALSE,
                    toc             = NULL,
@@ -167,6 +175,7 @@ florey <- function(path            = ".",
     dept           = "florey",
     path           = path,
     logo           = logo,
+    favicon        = favicon,
     colour         = colour,
     dark_header    = TRUE,
     overwrite      = overwrite,
@@ -199,6 +208,8 @@ florey <- function(path            = ".",
 #'   are derived automatically.
 #' @param logo Path to a PNG, SVG, or JPEG logo file. If `NULL`, the header
 #'   bar is rendered without a logo.
+#' @param favicon Optional path to a dedicated favicon image. If `NULL`, the
+#'   logo is used as the favicon (and there is none when no logo is supplied).
 #' @param name Theme name. Used (after sanitising to lowercase letters,
 #'   digits, and hyphens) as the extension folder name and the format key, so
 #'   `name = "My Lab"` installs `_extensions/my-lab/` and is used as
@@ -229,6 +240,7 @@ florey <- function(path            = ".",
 #' }
 custom <- function(colour,
                    logo            = NULL,
+                   favicon         = NULL,
                    name            = "custom",
                    title           = NULL,
                    path            = ".",
@@ -255,6 +267,7 @@ custom <- function(colour,
     dept           = NULL,
     path           = path,
     logo           = logo,
+    favicon        = favicon,
     colour         = colour,
     dark_header    = .is_dark(colour),
     overwrite      = overwrite,

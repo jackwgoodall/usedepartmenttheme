@@ -20,6 +20,17 @@ local_project <- function(env = parent.frame()) {
   dir
 }
 
+# A tiny SVG, used where we need a favicon that is visibly distinct from the
+# PNG logo (different MIME type in the emitted data URI).
+local_svg <- function(dir, name = "favicon.svg") {
+  svg_path <- file.path(dir, name)
+  writeLines(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>',
+    svg_path
+  )
+  svg_path
+}
+
 test_that("custom() installs a complete extension", {
   skip_if_not_installed("withr")
   dir  <- local_project()
@@ -64,6 +75,53 @@ test_that("custom() installs a complete extension", {
   expect_false(any(grepl("%%", fav, fixed = TRUE)))
   expect_true(any(grepl("include-in-header: resources/favicon.html",
                         yml, fixed = TRUE)))
+})
+
+test_that("an explicit favicon overrides the logo", {
+  skip_if_not_installed("withr")
+  dir  <- local_project()
+  logo <- local_png(dir)          # PNG
+  fav  <- local_svg(dir)          # SVG -> distinguishable MIME
+
+  suppressMessages(
+    custom(colour = "#003865", logo = logo, favicon = fav, path = dir)
+  )
+  res <- file.path(dir, "_extensions", "custom", "resources")
+
+  # favicon uses the SVG we supplied ...
+  favhtml <- readLines(file.path(res, "favicon.html"), warn = FALSE)
+  expect_true(any(grepl('rel="icon" href="data:image/svg+xml;base64,',
+                        favhtml, fixed = TRUE)))
+  # ... while the header still shows the PNG logo
+  header <- readLines(file.path(res, "header.html"), warn = FALSE)
+  expect_true(any(grepl("data:image/png;base64,", header, fixed = TRUE)))
+})
+
+test_that("a missing favicon warns and falls back to the logo", {
+  skip_if_not_installed("withr")
+  dir  <- local_project()
+  logo <- local_png(dir)
+
+  expect_warning(
+    suppressMessages(
+      custom(colour = "#003865", logo = logo,
+             favicon = file.path(dir, "does-not-exist.png"), path = dir)
+    ),
+    "Favicon not found"
+  )
+  favhtml <- readLines(
+    file.path(dir, "_extensions", "custom", "resources", "favicon.html"),
+    warn = FALSE
+  )
+  expect_true(any(grepl("data:image/png;base64,", favhtml, fixed = TRUE)))
+})
+
+test_that(".resolve_favicon precedence falls back logo -> none", {
+  expect_equal(.resolve_favicon(NULL, NULL, "data:logo"),
+               list(uri = "data:logo", label = "logo"))
+  none <- .resolve_favicon(NULL, NULL, NULL)
+  expect_null(none$uri)
+  expect_equal(none$label, "none")
 })
 
 test_that("custom() without a logo writes an inert (link-free) favicon", {

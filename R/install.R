@@ -31,10 +31,13 @@
 #' @param format_options Named list of optional Quarto format settings. Any
 #'   element that is `NULL` is omitted from `_extension.yml` entirely, so
 #'   Quarto's own default applies. See `.build_format_lines()`.
+#' @param favicon    Optional path to a dedicated favicon image. When `NULL`,
+#'   a bundled `logos/<dept>/favicon.png` is used if present, otherwise the
+#'   logo doubles as the favicon. See `.resolve_favicon()`.
 #' @noRd
 .install_theme <- function(dept, path, logo, colour, dark_header, overwrite,
                            dept_id = NULL, title = NULL,
-                           format_options = list()) {
+                           format_options = list(), favicon = NULL) {
 
   colour <- .normalise_hex(colour)
   .validate_format_options(format_options)
@@ -106,8 +109,11 @@
   html_path <- fs::path(dest_root, "resources", "header.html")
   .inject_logo_uri(html_path, logo_uri, dept_id)
 
-  favicon_path <- fs::path(dest_root, "resources", "favicon.html")
-  .inject_favicon(favicon_path, logo_uri)
+  # Favicon: an explicit `favicon` file wins, then a bundled per-department
+  # favicon.png, then the logo itself.
+  fav          <- .resolve_favicon(favicon, dept, logo_uri)
+  favicon_html <- fs::path(dest_root, "resources", "favicon.html")
+  .inject_favicon(favicon_html, fav$uri)
 
   # ── Ensure _quarto.yml exists so subfolders can find the extension ───────────
   quarto_yml <- fs::path(path, "_quarto.yml")
@@ -140,6 +146,7 @@
                  if (dark_header || .is_dark(colour)) "white text on dark colour"
                  else "dark text on light colour"),
     "i" = paste0("Logo     : ", logo_label),
+    "i" = paste0("Favicon  : ", fav$label),
     "i" = paste0("Options  : ", opts_label),
     "i" = paste0("Format   : add `format: ", dept_id, "-html` to your document YAML.")
   ))
@@ -259,10 +266,53 @@
                  png  = "image/png",
                  jpg  = "image/jpeg",
                  jpeg = "image/jpeg",
+                 ico  = "image/x-icon",
+                 gif  = "image/gif",
+                 webp = "image/webp",
                  "image/png")
 
   raw <- readBin(logo_path, "raw", n = logo_size)
   paste0("data:", mime, ";base64,", base64enc::base64encode(raw))
+}
+
+#' Resolve which image to use as the favicon, and a label for messaging.
+#'
+#' Precedence: an explicit `favicon` file argument, then a bundled
+#' `logos/<dept>/favicon.png` (present only for departments that ship one),
+#' then the logo itself. Returns a list with `uri` (a data URI, or `NULL` when
+#' nothing is available) and a human-readable `label`.
+#' @noRd
+.resolve_favicon <- function(favicon, dept, logo_uri) {
+  # 1. Explicit favicon file supplied by the caller
+  if (!is.null(favicon)) {
+    favicon_path <- fs::path_abs(favicon)
+    if (fs::file_exists(favicon_path)) {
+      uri <- .logo_data_uri(favicon_path)
+      if (!is.null(uri)) return(list(uri = uri, label = favicon))
+    } else {
+      rlang::warn(paste0(
+        "Favicon not found at `", favicon_path, "`. Falling back to the logo."
+      ))
+    }
+  }
+
+  # 2. Bundled per-department favicon.png (optional; not every department has one)
+  if (!is.null(dept)) {
+    bundled <- system.file(file.path("logos", dept, "favicon.png"),
+                           package = "usedepartmenttheme")
+    if (nchar(bundled) > 0 && file.exists(bundled)) {
+      uri <- .logo_data_uri(bundled)
+      if (!is.null(uri)) {
+        return(list(uri = uri, label = paste0("bundled ", dept, " favicon")))
+      }
+    }
+  }
+
+  # 3. Fall back to the logo (which may itself be NULL -> no favicon)
+  if (!is.null(logo_uri)) {
+    return(list(uri = logo_uri, label = "logo"))
+  }
+  list(uri = NULL, label = "none")
 }
 
 #' Embed the logo as a base64 data URI in header.html.
@@ -285,16 +335,16 @@
   writeLines(html, html_path)
 }
 
-#' Write the favicon include, embedding the logo as the browser-tab icon.
+#' Write the favicon include, embedding the resolved image as the tab icon.
 #'
 #' Replaces the %%FAVICON_LINK%% placeholder with a `<link rel="icon">` using
-#' the logo data URI. When there is no logo the placeholder is blanked, so the
-#' included file is inert and no favicon is set.
+#' `favicon_uri` (from `.resolve_favicon()`). When it is `NULL` the placeholder
+#' is blanked, so the included file is inert and no favicon is set.
 #' @noRd
-.inject_favicon <- function(favicon_path, logo_uri) {
+.inject_favicon <- function(favicon_path, favicon_uri) {
   html <- readLines(favicon_path, warn = FALSE)
-  link <- if (!is.null(logo_uri)) {
-    paste0('<link rel="icon" href="', logo_uri, '">')
+  link <- if (!is.null(favicon_uri)) {
+    paste0('<link rel="icon" href="', favicon_uri, '">')
   } else {
     ""
   }
