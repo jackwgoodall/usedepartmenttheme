@@ -4,8 +4,8 @@
 [![lint](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml)
 [![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml)
-[![codecov](https://codecov.io/gh/jackwgoodall/usedepartmenttheme/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ACCIDDA/hestia)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![codecov](https://codecov.io/gh/jackwgoodall/usedepartmenttheme/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jackwgoodall/usedepartmenttheme)
+[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
 <!-- badges: end -->
 
 A quick and easy way to format your [Quarto](https://quarto.org/) documents with you academic department's theme and you standard Quarto preferences. 
