@@ -8,10 +8,11 @@
 (^|/)_freeze$
 ^_extensions$
 ^_quarto\.yml$
-# Stray Quarto render artifacts at the package root (scratch docs, _files dirs)
+# Stray Quarto render artifacts (scratch docs, _files dirs, scratch folders)
 ^[^/]+\.qmd$
 ^[^/]+\.html$
-^[^/]+_files$
+(^|/)[^/]+_files$
+^test$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

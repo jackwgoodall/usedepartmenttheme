@@ -1,10 +1,10 @@
-<!-- Department branded header bar                                 -->
-<!-- Title/subtitle are read from Quarto's rendered output via JS  -->
+<!-- Department branded header bar                                          -->
+<!-- Quarto's whole title block is moved in here (see the script below), so  -->
+<!-- every native metadata field — title, subtitle, simple or rich authors,  -->
+<!-- affiliations, ORCID, email, date, DOI, … — renders in-brand with no     -->
+<!-- per-field handling.                                                     -->
 <div class="dept-header" id="dept-header-bar">
-  <div class="dept-header-text">
-    <h1 id="dept-doc-title">Document</h1>
-    <p class="dept-subtitle" id="dept-doc-subtitle" style="display:none;"></p>
-  </div>
+  <div class="dept-header-text"></div>
   <img
     src="_extensions/dept/resources/logo.png"
     class="dept-logo"
@@ -15,39 +15,24 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var bar = document.getElementById("dept-header-bar");
-
-  var titleEl = document.querySelector(".title");
-  if (titleEl) {
-    var t = document.getElementById("dept-doc-title");
-    if (t) t.textContent = titleEl.textContent;
-  }
-
-  var subtitleEl = document.querySelector(".subtitle");
-  if (subtitleEl) {
-    var s = document.getElementById("dept-doc-subtitle");
-    if (s) {
-      s.textContent = subtitleEl.textContent;
-      s.style.display = "block";
-    }
-  }
-
-  // Author, date, and any other document metadata live in Quarto's title
-  // block, which this theme hides. Move the whole meta block into the header
-  // bar so whatever the author put in the YAML (author, date, affiliations,
-  // DOI, ...) stays visible.
-  var meta    = document.querySelector(".quarto-title-meta");
+  var bar     = document.getElementById("dept-header-bar");
   var textBox = bar ? bar.querySelector(".dept-header-text") : null;
-  if (meta && textBox && meta.textContent.trim() !== "") {
-    textBox.appendChild(meta);
+
+  // Move Quarto's entire title block into the branded header bar. Relocating
+  // the whole block (rather than copying individual fields) means anything
+  // Quarto renders natively appears in-brand without the theme needing to
+  // know about each field.
+  var titleBlock = document.getElementById("title-block-header") ||
+                   document.querySelector("header.quarto-title-block");
+  if (titleBlock && textBox) {
+    textBox.appendChild(titleBlock);
   }
 
-  // The `code-tools` button is rendered inside Quarto's title block, which
-  // this theme hides. Move it into the branded header bar so it stays usable
-  // when `code_tools = TRUE`. Quarto uses two variants: a dropdown menu
-  // (`#quarto-code-tools-menu`, when code folding is on) or a single
-  // "View Source" button (`#quarto-code-tools-source`, when it is off). Match
-  // either by class and carry a dropdown menu along only when one exists.
+  // The `code-tools` button ships inside the title block; lift it out to the
+  // right of the bar. Quarto uses a dropdown menu (`#quarto-code-tools-menu`,
+  // when code folding is on) or a single "View Source" button
+  // (`#quarto-code-tools-source`, when it is off); match either by class and
+  // carry a dropdown menu along only when one exists.
   var codeTools = document.querySelector(".code-tools-button");
   if (bar && codeTools) {
     var menu = codeTools.nextElementSibling; // dropdown <ul>, if any

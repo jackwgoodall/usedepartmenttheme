@@ -2,11 +2,11 @@
 
 // ── Brand colours (injected by usedepartmenttheme at install time) ───────────
 // Do not edit these four lines manually — they are rewritten by .install_theme()
-$dept-primary:       %%DEPT_COLOUR%%;
-$dept-light:         %%DEPT_COLOUR_LIGHT%%;
-$dept-pale:          %%DEPT_COLOUR_PALE%%;
-$dept-header-text:   %%DEPT_HEADER_TEXT%%;   // #ffffff (light headers) or #1a1a1a (dark)
-$dept-header-border: %%DEPT_HEADER_BORDER%%; // subtle bottom border on dark headers
+$dept-primary:       #0D5257;
+$dept-light:         #568689;
+$dept-pale:          #E2EAEB;
+$dept-header-text:   #FFFFFF;   // #ffffff (light headers) or #1a1a1a (dark)
+$dept-header-border: transparent; // subtle bottom border on dark headers
 
 $dept-white:  #ffffff;
 $dept-text:   #212529;

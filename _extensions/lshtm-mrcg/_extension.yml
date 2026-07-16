@@ -1,0 +1,19 @@
+name: lshtm-mrcg
+title: LSHTM / MRC Gambia HTML Format
+author: Jack Goodall
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    html:
+      # ── Base theme (always present) ────────────────────────────────────────
+      theme: [cosmo, resources/theme.scss]
+
+      # ── Branded header bar + favicon (always present) ──────────────────────
+      include-before-body: resources/header.html
+      include-in-header: resources/favicon.html
+
+      # ── Optional settings ──────────────────────────────────────────────────
+      # Written here only for the arguments you pass to the install function
+      # (toc, code-fold, self-contained, warning/message, ...). Anything you
+      # leave unset is omitted so Quarto's own default applies.
