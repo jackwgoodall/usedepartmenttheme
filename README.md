@@ -1,10 +1,10 @@
 # usedepartmenttheme
 
 <!-- badges: start -->
-[![lint](https://github.com/jackwgoodall/jackwgoodall/actions/workflows/lint.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml)
+[![lint](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/lint.yaml)
 [![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/jackwgoodall/jackwgoodall/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml)
-[![codecov](https://codecov.io/gh/jackwgoodall/jackwgoodall/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ACCIDDA/hestia)
+[![pkgdown](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml)
+[![codecov](https://codecov.io/gh/jackwgoodall/usedepartmenttheme/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ACCIDDA/hestia)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
 <!-- badges: end -->
 
