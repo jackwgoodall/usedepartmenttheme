@@ -7,13 +7,14 @@
 \title{usedepartmenttheme: Quarto HTML themes for LSHTM departments}
 \description{
 Installs a branded Quarto HTML extension (\code{format: dept-html}) into your
-project with one function call. Three department themes are provided, plus
+project with one function call. Four department themes are provided, plus
 a generic option:
 }
 \details{
 \itemize{
 \item \code{\link[=lshtm]{lshtm()}} — LSHTM teal (\verb{#0D5257}), white header text
 \item \code{\link[=lshtm_mrcg]{lshtm_mrcg()}} — LSHTM / MRC Gambia joint branding, same teal
+\item \code{\link[=lshtm_mrcu]{lshtm_mrcu()}} — LSHTM / MRC Uganda joint branding, same teal
 \item \code{\link[=florey]{florey()}} — Florey Institute black header, white logo
 \item \code{\link[=custom]{custom()}} — bring your own logo and base colour; tints and readable
 header text are derived automatically
@@ -33,6 +34,15 @@ Much of this can also be achieved with Quarto's own branding support
 packages a few opinionated department themes as an installable extension so
 collaborators can render with a single \verb{format:} key and no per-project
 setup.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jackwgoodall/usedepartmenttheme}
+  \item \url{https://jackwgoodall.github.io/usedepartmenttheme/}
+  \item Report bugs at \url{https://github.com/jackwgoodall/usedepartmenttheme/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jack Goodall \email{jack.goodall@lshtm.ac.uk} (\href{https://orcid.org/0000-0003-0997-5528}{ORCID})

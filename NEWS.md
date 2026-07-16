@@ -1,7 +1,8 @@
 # usedepartmenttheme 0.1.0
 
 * Initial release.
-* Three built-in department themes: `lshtm()`, `lshtm_mrcg()`, and `florey()`.
+* Four built-in department themes: `lshtm()`, `lshtm_mrcg()`, `lshtm_mrcu()`,
+  and `florey()`.
 * Generic `custom()` theme: supply any logo and a single base colour;
   lighter/paler tints are derived automatically and the header text colour
   is chosen for readability from the colour's luminance.

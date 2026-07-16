@@ -5,10 +5,13 @@
 ^cran-comments\.md$
 ^\.claude$
 ^\.quarto$
+^_freeze$
 ^_extensions$
 ^_quarto\.yml$
-^test\.qmd$
-^test\.html$
+# Stray Quarto render artifacts at the package root (scratch docs, _files dirs)
+^[^/]+\.qmd$
+^[^/]+\.html$
+^[^/]+_files$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

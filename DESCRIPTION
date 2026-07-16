@@ -5,9 +5,10 @@ Authors@R:
     person("Jack", "Goodall", email = "jack.goodall@lshtm.ac.uk", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-0997-5528"))
 Description: Installs a branded 'Quarto' HTML extension (format: dept-html)
-    into your project with one function call. Three department themes are
-    provided: lshtm() and lshtm_mrcg() for LSHTM/MRC Gambia teal branding and
-    florey() for the Florey Institute. A generic custom() theme accepts any
+    into your project with one function call. Four department themes are
+    provided: lshtm(), lshtm_mrcg(), and lshtm_mrcu() for LSHTM and its MRC
+    Gambia and MRC Uganda units (teal branding) and florey() for the Florey
+    Institute. A generic custom() theme accepts any
     logo and base colour: lighter and paler tints are derived automatically
     from the single hex value, and the header text colour is chosen for
     readability based on the colour's luminance. Optional 'Quarto' settings

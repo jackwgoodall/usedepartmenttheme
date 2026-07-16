@@ -1,18 +1,23 @@
 # usedepartmenttheme
 
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
+  <!-- badges: end -->
+
 A quick and easy way to format your [Quarto](https://quarto.org/) documents with you academic department's theme and you standard Quarto preferences. 
 You set these once and then they are applied by a simple tweak to the YAML.
-The package currently has three default themes build in plus a function to supply your own logo and colour scheme.
+The package currently has four default themes build in plus a function to supply your own logo and colour scheme.
 To have your department added to this package please either add it yourself with a pull request or open an issue on the [GitHub page](https://github.com/jackwgoodall/usedepartmenttheme).
 
 ## Themes
 
-| Function | Format key | Header | Default colour |
-|---|---|---|---|
-| `usedepartmenttheme::lshtm()` | `lshtm-html` | Teal, white text | `#0D5257` |
-| `usedepartmenttheme::lshtm_mrcg()` | `lshtm-mrcg-html` | Teal, white text | `#0D5257` |
-| `usedepartmenttheme::florey()` | `florey-html` | Black, white text | `#1a1a1a` |
-| `usedepartmenttheme::custom()` | `<name>-html` | Derived from your colour | — (you choose) |
+| Department | Function | Format key | Header | Default colour |
+|---|---|---|---|---|
+| LSHTM (main) | `usedepartmenttheme::lshtm()` | `lshtm-html` | Teal, white text | `#0D5257` |
+| LSHTM (MRC Unit The Gambia) | `usedepartmenttheme::lshtm_mrcg()` | `lshtm-mrcg-html` | Teal, white text | `#0D5257` |
+| LSHTM (MRC Unit Uganda | `usedepartmenttheme::lshtm_mrcu()` | `lshtm-mrcu-html` | Teal, white text | `#0D5257` |
+| The Florey Institute of Infection | `usedepartmenttheme::florey()` | `florey-html` | Black, white text | `#1a1a1a` |
+| Generic | `usedepartmenttheme::custom()` | `<name>-html` | Derived from your colour | — (you choose) |
 
 The themes impose no document defaults of their own but you can opt in to the
 settings you want (see [Optional settings](#optional-settings) below).
@@ -26,7 +31,7 @@ file:
 > **Quarto branding:** <https://quarto.org/docs/reference/metadata/brand.html>
 
 `usedepartmenttheme` exists to streamline this as an installable
-Quarto extension, so collaborators can render with a single `format:` key and no
+Quarto extension, so you and your collaborators can render with a single `format:` key and no
 per-project setup. 
 
 ## Installation
@@ -43,6 +48,7 @@ Run **once** in the project root (same directory as your `.qmd` files):
 usedepartmenttheme::custom(colour = "#003865")   # any organisation
 usedepartmenttheme::lshtm()
 usedepartmenttheme::lshtm_mrcg()
+usedepartmenttheme::lshtm_mrcu()
 usedepartmenttheme::florey()
 ```
 
@@ -123,7 +129,7 @@ When you set you theme the package will prompt you on how to modify the YAML.
 ---
 title: "Resistance Profiles"
 subtitle: "MRC Gambia — 2024/25"
-format: lshtm-html        # or lshtm-mrcg-html / florey-html / <your-custom>-html
+format: lshtm-html        # or lshtm-mrcg-html / lshtm-mrcu-html / florey-html / <your-custom>-html
 ---
 ```
 
@@ -142,7 +148,7 @@ format:
 your-project/
 ├── analysis.qmd
 └── _extensions/
-    └── lshtm/               # or florey/, lshtm_mrcg/, or your custom name
+    └── lshtm/               # or florey/, lshtm_mrcg/, lshtm_mrcu/, or your custom name
         ├── _extension.yml
         └── resources/
             ├── theme.scss

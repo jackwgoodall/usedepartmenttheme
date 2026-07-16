@@ -7,6 +7,7 @@
 custom(
   colour,
   logo = NULL,
+  favicon = NULL,
   name = "custom",
   title = NULL,
   path = ".",
@@ -31,6 +32,9 @@ are derived automatically.}
 
 \item{logo}{Path to a PNG, SVG, or JPEG logo file. If \code{NULL}, the header
 bar is rendered without a logo.}
+
+\item{favicon}{Optional path to a dedicated favicon image. If \code{NULL}, the
+logo is used as the favicon (and there is none when no logo is supplied).}
 
 \item{name}{Theme name. Used (after sanitising to lowercase letters,
 digits, and hyphens) as the extension folder name and the format key, so
@@ -83,8 +87,8 @@ Invisibly returns the path to the installed extension directory.
 }
 \description{
 The generic counterpart to the built-in department themes (\code{\link[=lshtm]{lshtm()}},
-\code{\link[=lshtm_mrcg]{lshtm_mrcg()}}, \code{\link[=florey]{florey()}}). Supply your own logo and a single base colour
-and the package works out the rest:
+\code{\link[=lshtm_mrcg]{lshtm_mrcg()}}, \code{\link[=lshtm_mrcu]{lshtm_mrcu()}}, \code{\link[=florey]{florey()}}). Supply your own logo and a
+single base colour and the package works out the rest:
 }
 \details{
 \itemize{

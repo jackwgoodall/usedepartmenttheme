@@ -1,11 +1,12 @@
 #' usedepartmenttheme: Quarto HTML themes for LSHTM departments
 #'
 #' Installs a branded Quarto HTML extension (`format: dept-html`) into your
-#' project with one function call. Three department themes are provided, plus
+#' project with one function call. Four department themes are provided, plus
 #' a generic option:
 #'
 #' - [lshtm()] — LSHTM teal (`#0D5257`), white header text
 #' - [lshtm_mrcg()] — LSHTM / MRC Gambia joint branding, same teal
+#' - [lshtm_mrcu()] — LSHTM / MRC Uganda joint branding, same teal
 #' - [florey()] — Florey Institute black header, white logo
 #' - [custom()] — bring your own logo and base colour; tints and readable
 #'   header text are derived automatically

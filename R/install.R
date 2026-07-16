@@ -3,6 +3,7 @@
 .dept_to_id <- c(
   lshtm      = "lshtm",
   lshtm_mrcg = "lshtm-mrcg",
+  lshtm_mrcu = "lshtm-mrcu",
   florey     = "florey"
 )
 
@@ -10,6 +11,7 @@
 .dept_titles <- c(
   lshtm      = "LSHTM HTML Format",
   lshtm_mrcg = "LSHTM / MRC Gambia HTML Format",
+  lshtm_mrcu = "LSHTM / MRC Uganda HTML Format",
   florey     = "Florey Institute HTML Format"
 )
 

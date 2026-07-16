@@ -7,6 +7,7 @@
 lshtm_mrcg(
   path = ".",
   logo = NULL,
+  favicon = NULL,
   colour = "#0D5257",
   overwrite = FALSE,
   toc = NULL,
@@ -29,6 +30,10 @@ directory. Should be the top-level folder of your project so that all
 
 \item{logo}{Path to a PNG, SVG, or JPEG logo file. If \code{NULL}, the bundled
 LSHTM placeholder logo is used.}
+
+\item{favicon}{Optional path to a dedicated favicon image (PNG, SVG, ICO,
+...). If \code{NULL}, a bundled \code{favicon.png} for the department is used when
+present, otherwise the logo doubles as the favicon.}
 
 \item{colour}{Primary brand colour as a hex string. Defaults to LSHTM teal
 (\code{"#0D5257"}). Lighter and paler tints are derived automatically.}

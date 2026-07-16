@@ -141,6 +141,48 @@ lshtm_mrcg <- function(path            = ".",
   )
 }
 
+#' Install the LSHTM / MRC Uganda (joint-branded) Quarto theme
+#'
+#' Identical colours to [lshtm()] but uses a separate logo slot for the
+#' MRC/UVRI & LSHTM Uganda Research Unit. Use `format: lshtm-mrcu-html` in your
+#' `.qmd` YAML.
+#'
+#' @inheritSection lshtm Optional format settings
+#' @inheritParams lshtm
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' usedepartmenttheme::lshtm_mrcu(path = "~/projects/my-analysis")
+#' }
+lshtm_mrcu <- function(path            = ".",
+                       logo            = NULL,
+                       favicon         = NULL,
+                       colour          = "#0D5257",
+                       overwrite       = FALSE,
+                       toc             = NULL,
+                       toc_depth       = NULL,
+                       code_fold       = NULL,
+                       code_tools      = NULL,
+                       self_contained  = NULL,
+                       number_sections = NULL,
+                       highlight_style = NULL,
+                       warning         = NULL,
+                       message         = NULL,
+                       fig_width       = NULL,
+                       fig_height      = NULL) {
+  .install_theme(
+    dept           = "lshtm_mrcu",
+    path           = path,
+    logo           = logo,
+    favicon        = favicon,
+    colour         = colour,
+    dark_header    = FALSE,
+    overwrite      = overwrite,
+    format_options = .collect_format_options()
+  )
+}
+
 #' Install the Florey Institute Quarto theme
 #'
 #' Copies `_extensions/florey/` into `path`.
@@ -186,8 +228,8 @@ florey <- function(path            = ".",
 #' Install a custom-branded Quarto theme
 #'
 #' The generic counterpart to the built-in department themes ([lshtm()],
-#' [lshtm_mrcg()], [florey()]). Supply your own logo and a single base colour
-#' and the package works out the rest:
+#' [lshtm_mrcg()], [lshtm_mrcu()], [florey()]). Supply your own logo and a
+#' single base colour and the package works out the rest:
 #'
 #' - lighter and paler tints of `colour` are derived automatically and used
 #'   for sidebar backgrounds, heading accents, and borders;

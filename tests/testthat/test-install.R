@@ -242,14 +242,34 @@ test_that("custom() validates its inputs", {
 
 test_that("bundled department themes still install", {
   skip_if_not_installed("withr")
+
+  cases <- list(
+    list(fn = lshtm,      id = "lshtm"),
+    list(fn = lshtm_mrcg, id = "lshtm-mrcg"),
+    list(fn = lshtm_mrcu, id = "lshtm-mrcu"),
+    list(fn = florey,     id = "florey")
+  )
+
+  for (case in cases) {
+    dir <- local_project()
+    suppressMessages(case$fn(path = dir))
+
+    ext <- file.path(dir, "_extensions", case$id)
+    expect_true(dir.exists(ext))
+    expect_true(file.exists(file.path(ext, "resources", "logo.png")))
+
+    yml <- readLines(file.path(ext, "_extension.yml"), warn = FALSE)
+    expect_true(any(grepl(paste0("^name: ", case$id, "$"), yml)))
+  }
+})
+
+test_that("lshtm_mrcu ships a bundled favicon distinct from its logo", {
+  skip_if_not_installed("withr")
   dir <- local_project()
 
-  suppressMessages(lshtm(path = dir))
+  suppressMessages(lshtm_mrcu(path = dir))
+  res <- file.path(dir, "_extensions", "lshtm-mrcu", "resources")
 
-  ext <- file.path(dir, "_extensions", "lshtm")
-  expect_true(dir.exists(ext))
-  expect_true(file.exists(file.path(ext, "resources", "logo.png")))
-
-  yml <- readLines(file.path(ext, "_extension.yml"), warn = FALSE)
-  expect_true(any(grepl("^name: lshtm$", yml)))
+  fav <- readLines(file.path(res, "favicon.html"), warn = FALSE)
+  expect_true(any(grepl('rel="icon" href="data:image', fav)))
 })
