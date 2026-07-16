@@ -49,7 +49,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="usedepartmenttheme">usedepartmenttheme<a class="anchor" aria-label="anchor" href="#usedepartmenttheme"></a>
 </h1></div>
-<p>One R package, three Quarto HTML department themes — plus a generic theme for any organisation. Run one function to install the extension into your project; your <code>.qmd</code> files need only the format key in their YAML.</p>
+<p>A quick and easy way to format your <a href="https://quarto.org/" class="external-link">Quarto</a> documents with you academic department’s theme and you standard Quarto preferences. You set these once and then they are applied by a simple tweak to the YAML. The package currently has three default themes build in plus a function to supply your own logo and colour scheme. To have your department added to this package please either add it yourself with a pull request or open an issue on the <a href="https://github.com/jackwgoodall/usedepartmenttheme" class="external-link">GitHub page</a>.</p>
 <div class="section level2">
 <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
 </h2>
@@ -93,25 +93,22 @@
 </tr>
 </tbody>
 </table>
-<p>The themes impose no document defaults of their own — you opt in to the settings you want (see <a href="#optional-settings">Optional settings</a> below).</p>
+<p>The themes impose no document defaults of their own but you can opt in to the settings you want (see <a href="#optional-settings">Optional settings</a> below).</p>
 </div>
 <div class="section level2">
 <h2 id="do-you-need-this-package">Do you need this package?<a class="anchor" aria-label="anchor" href="#do-you-need-this-package"></a>
 </h2>
-<p>Much of what this package does — a logo, brand colours, and typography applied across a project — is now supported natively by Quarto through a <code>_brand.yml</code> file:</p>
+<p>Much of what this package does (a logo, brand colours, and typography applied across a project is now supported natively by Quarto through a <code>_brand.yml</code> file:</p>
 <blockquote>
 <p><strong>Quarto branding:</strong> <a href="https://quarto.org/docs/reference/metadata/brand.html" class="external-link uri">https://quarto.org/docs/reference/metadata/brand.html</a></p>
 </blockquote>
-<p>If you just want your own colour and logo, Quarto’s built-in branding is the standard, well-documented route and you may not need this package at all.</p>
-<p><code>usedepartmenttheme</code> exists for a narrower job: shipping a small number of <strong>ready-made, opinionated department themes</strong> (the branded header bar, TOC sidebar styling, code-tools placement, and favicon shown here) as an installable Quarto extension, so collaborators can render with a single <code>format:</code> key and no per-project brand setup. The generic <a href="#not-one-of-the-departments-use-custom"><code>custom()</code></a> theme gives you the same house style with your own logo and colour when that is what you want.</p>
+<p><code>usedepartmenttheme</code> exists to streamline this as an installable Quarto extension, so collaborators can render with a single <code>format:</code> key and no per-project setup.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_local</span><span class="op">(</span><span class="st">"path/to/usedepartmenttheme"</span><span class="op">)</span></span>
-<span><span class="co"># or once on GitHub:</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"jackwgoodall/usedepartmenttheme"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"jackwgoodall/usedepartmenttheme"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="per-project-setup">Per-project setup<a class="anchor" aria-label="anchor" href="#per-project-setup"></a>
@@ -122,7 +119,7 @@
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm.html">lshtm</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm_mrcg.html">lshtm_mrcg</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/florey.html">florey</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Each installs its own <code>_extensions/&lt;dept&gt;/</code> folder. Commit this to version control so collaborators and CI can render without the package installed.</p>
+<p>Each installs its own <code>_extensions/&lt;dept&gt;/</code> folder. If you commit this to version control collaborators can render the same output without the package installed.</p>
 <div class="section level3">
 <h3 id="overriding-colour-andor-logo">Overriding colour and/or logo<a class="anchor" aria-label="anchor" href="#overriding-colour-andor-logo"></a>
 </h3>
@@ -135,7 +132,7 @@
 <h3 id="not-one-of-the-departments-use-custom">Not one of the departments? Use <code>custom()</code>
 <a class="anchor" aria-label="anchor" href="#not-one-of-the-departments-use-custom"></a>
 </h3>
-<p>Supply your own logo and a single base colour — the package figures out the rest. Lighter and paler tints are derived from the colour, and the header text is set to white or near-black depending on how dark your colour is, so the header stays readable whatever you pick.</p>
+<p>Supply your own logo and a single base colour — the package figures out the rest. Lighter and paler tints are derived from the colour, and the header text is set to white or near-black depending on how dark your colour is, so the header stays readable whatever you pick. The colour must be supplied as a correctly formatted HEX code.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Installs _extensions/custom/, used as format: custom-html</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/custom.html">custom</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"#003865"</span>, logo <span class="op">=</span> <span class="st">"images/logo.png"</span><span class="op">)</span></span>
@@ -154,7 +151,7 @@
 <div class="section level2">
 <h2 id="optional-settings">Optional settings<a class="anchor" aria-label="anchor" href="#optional-settings"></a>
 </h2>
-<p>The themes don’t force any Quarto document options on you. Each install function (all four) accepts the following opt-in arguments — pass a value to write it into the extension, leave it unset to fall back to Quarto’s own default:</p>
+<p>The themes don’t force any Quarto document options on you. Each install function accepts the following opt-in arguments belwo. Pass a value to write it into the extension, leave it unset to fall back to Quarto’s own default:</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -228,8 +225,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Reproduce the "classic" full-featured report</span></span>
-<span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm.html">lshtm</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm.html">lshtm</a></span><span class="op">(</span></span>
 <span>  toc            <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  toc_depth      <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  code_fold      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -242,6 +238,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p>When you set you theme the package will prompt you on how to modify the YAML.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Resistance Profiles"</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"MRC Gambia — 2024/25"</span></span>
@@ -270,11 +267,16 @@
             ├── favicon.html    # logo embedded as the browser-tab favicon
             └── logo.png</code></pre>
 <p>The logo is embedded (as a base64 data URI) both in the header bar and as the document’s favicon, so the browser tab shows your logo too. Supply a logo with <code>logo =</code> on any theme, or install with no logo to skip both.</p>
+<div class="section level3">
+<h3 id="a-separate-favicon">A separate favicon<a class="anchor" aria-label="anchor" href="#a-separate-favicon"></a>
+</h3>
+<p>By default the logo doubles as the favicon. To use a <strong>dedicated</strong> favicon instead, pass <code>favicon =</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm.html">lshtm</a></span><span class="op">(</span>favicon <span class="op">=</span> <span class="st">"images/favicon.png"</span><span class="op">)</span></span>
+<span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/custom.html">custom</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"#003865"</span>, logo <span class="op">=</span> <span class="st">"logo.png"</span>,</span>
+<span>                           favicon <span class="op">=</span> <span class="st">"favicon.png"</span><span class="op">)</span></span></code></pre></div>
+<p>The order of precedence is: the <code>favicon =</code> argument, then a bundled <code>favicon.png</code> shipped with the department (if it has one), then the logo. A department without a bundled favicon simply uses its logo so bundling one is optional.</p>
 </div>
-<div class="section level2">
-<h2 id="adding-a-new-department">Adding a new department<a class="anchor" aria-label="anchor" href="#adding-a-new-department"></a>
-</h2>
-<p>For a one-off organisation you don’t need to touch the package at all — use <code><a href="reference/custom.html">custom()</a></code> (above). To add a new <em>bundled</em> department it is three steps: add a logo to <code>inst/logos/&lt;dept&gt;/</code>, add an entry to <code>.dept_to_id</code>/<code>.dept_titles</code> in <code>R/install.R</code>, and add an exported wrapper function to <code>R/themes.R</code> (<code>NAMESPACE</code> and <code>man/</code> are regenerated by <code>roxygen2::roxygenise()</code>).</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

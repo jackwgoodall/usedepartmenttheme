@@ -1,9 +1,13 @@
 # usedepartmenttheme
 
-One R package, three Quarto HTML department themes — plus a generic
-theme for any organisation. Run one function to install the extension
-into your project; your `.qmd` files need only the format key in their
-YAML.
+A quick and easy way to format your [Quarto](https://quarto.org/)
+documents with you academic department’s theme and you standard Quarto
+preferences. You set these once and then they are applied by a simple
+tweak to the YAML. The package currently has three default themes build
+in plus a function to supply your own logo and colour scheme. To have
+your department added to this package please either add it yourself with
+a pull request or open an issue on the [GitHub
+page](https://github.com/jackwgoodall/usedepartmenttheme).
 
 ## Themes
 
@@ -14,37 +18,27 @@ YAML.
 | [`usedepartmenttheme::florey()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/florey.md) | `florey-html` | Black, white text | `#1a1a1a` |
 | [`usedepartmenttheme::custom()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/custom.md) | `<name>-html` | Derived from your colour | — (you choose) |
 
-The themes impose no document defaults of their own — you opt in to the
-settings you want (see [Optional settings](#optional-settings) below).
+The themes impose no document defaults of their own but you can opt in
+to the settings you want (see [Optional settings](#optional-settings)
+below).
 
 ## Do you need this package?
 
-Much of what this package does — a logo, brand colours, and typography
-applied across a project — is now supported natively by Quarto through a
+Much of what this package does (a logo, brand colours, and typography
+applied across a project is now supported natively by Quarto through a
 `_brand.yml` file:
 
 > **Quarto branding:**
 > <https://quarto.org/docs/reference/metadata/brand.html>
 
-If you just want your own colour and logo, Quarto’s built-in branding is
-the standard, well-documented route and you may not need this package at
-all.
-
-`usedepartmenttheme` exists for a narrower job: shipping a small number
-of **ready-made, opinionated department themes** (the branded header
-bar, TOC sidebar styling, code-tools placement, and favicon shown here)
-as an installable Quarto extension, so collaborators can render with a
-single `format:` key and no per-project brand setup. The generic
-[`custom()`](#not-one-of-the-departments-use-custom) theme gives you the
-same house style with your own logo and colour when that is what you
-want.
+`usedepartmenttheme` exists to streamline this as an installable Quarto
+extension, so collaborators can render with a single `format:` key and
+no per-project setup.
 
 ## Installation
 
 ``` r
 
-devtools::install_local("path/to/usedepartmenttheme")
-# or once on GitHub:
 pak::pkg_install("jackwgoodall/usedepartmenttheme")
 ```
 
@@ -60,9 +54,9 @@ usedepartmenttheme::lshtm_mrcg()
 usedepartmenttheme::florey()
 ```
 
-Each installs its own `_extensions/<dept>/` folder. Commit this to
-version control so collaborators and CI can render without the package
-installed.
+Each installs its own `_extensions/<dept>/` folder. If you commit this
+to version control collaborators can render the same output without the
+package installed.
 
 ### Overriding colour and/or logo
 
@@ -78,7 +72,8 @@ usedepartmenttheme::florey(logo = "images/florey.png", overwrite = TRUE)
 Supply your own logo and a single base colour — the package figures out
 the rest. Lighter and paler tints are derived from the colour, and the
 header text is set to white or near-black depending on how dark your
-colour is, so the header stays readable whatever you pick.
+colour is, so the header stays readable whatever you pick. The colour
+must be supplied as a correctly formatted HEX code.
 
 ``` r
 
@@ -99,9 +94,9 @@ usedepartmenttheme::custom(colour = "#B45C1F")
 ## Optional settings
 
 The themes don’t force any Quarto document options on you. Each install
-function (all four) accepts the following opt-in arguments — pass a
-value to write it into the extension, leave it unset to fall back to
-Quarto’s own default:
+function accepts the following opt-in arguments belwo. Pass a value to
+write it into the extension, leave it unset to fall back to Quarto’s own
+default:
 
 | Argument | Extension key | Notes |
 |----|----|----|
@@ -119,7 +114,6 @@ Quarto’s own default:
 
 ``` r
 
-# Reproduce the "classic" full-featured report
 usedepartmenttheme::lshtm(
   toc            = TRUE,
   toc_depth      = 3,
@@ -134,6 +128,9 @@ You can always set these per-document in your `.qmd` YAML instead (see
 [Per-document overrides](#per-document-overrides) below).
 
 ## Usage
+
+When you set you theme the package will prompt you on how to modify the
+YAML.
 
 ``` yaml
 ---
@@ -170,12 +167,19 @@ as the document’s favicon, so the browser tab shows your logo too.
 Supply a logo with `logo =` on any theme, or install with no logo to
 skip both.
 
-## Adding a new department
+### A separate favicon
 
-For a one-off organisation you don’t need to touch the package at all —
-use
-[`custom()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/custom.md)
-(above). To add a new *bundled* department it is three steps: add a logo
-to `inst/logos/<dept>/`, add an entry to `.dept_to_id`/`.dept_titles` in
-`R/install.R`, and add an exported wrapper function to `R/themes.R`
-(`NAMESPACE` and `man/` are regenerated by `roxygen2::roxygenise()`).
+By default the logo doubles as the favicon. To use a **dedicated**
+favicon instead, pass `favicon =`:
+
+``` r
+
+usedepartmenttheme::lshtm(favicon = "images/favicon.png")
+usedepartmenttheme::custom(colour = "#003865", logo = "logo.png",
+                           favicon = "favicon.png")
+```
+
+The order of precedence is: the `favicon =` argument, then a bundled
+`favicon.png` shipped with the department (if it has one), then the
+logo. A department without a bundled favicon simply uses its logo so
+bundling one is optional.
