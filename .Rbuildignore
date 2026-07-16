@@ -9,3 +9,7 @@
 ^_quarto\.yml$
 ^test\.qmd$
 ^test\.html$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

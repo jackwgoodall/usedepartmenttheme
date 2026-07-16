@@ -8,3 +8,5 @@ check_working*
 
 /.quarto/
 **/*.quarto_ipynb
+.claude
+docs
