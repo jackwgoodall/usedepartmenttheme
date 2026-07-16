@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Branded Quarto HTML Themes for Departments and Institutes">
-<meta name="description" content="Installs a branded Quarto HTML extension (format: dept-html) into your project with one function call. Three department themes are provided: lshtm() and lshtm_mrcg() for LSHTM/MRC Gambia teal branding and florey() for the Florey Institute. A generic custom() theme accepts any logo and base colour: lighter and paler tints are derived automatically from the single hex value, and the header text colour is chosen for readability based on the colours luminance. Optional Quarto' settings such as a table of contents, code folding, and self-contained output are opt-in arguments rather than imposed defaults.">
-<meta property="og:description" content="Installs a branded Quarto HTML extension (format: dept-html) into your project with one function call. Three department themes are provided: lshtm() and lshtm_mrcg() for LSHTM/MRC Gambia teal branding and florey() for the Florey Institute. A generic custom() theme accepts any logo and base colour: lighter and paler tints are derived automatically from the single hex value, and the header text colour is chosen for readability based on the colours luminance. Optional Quarto' settings such as a table of contents, code folding, and self-contained output are opt-in arguments rather than imposed defaults.">
+<meta name="description" content="Installs a branded Quarto HTML extension (format: dept-html) into your project with one function call. Four department themes are provided: lshtm(), lshtm_mrcg(), and lshtm_mrcu() for LSHTM and its MRC Gambia and MRC Uganda units (teal branding) and florey() for the Florey Institute. A generic custom() theme accepts any logo and base colour: lighter and paler tints are derived automatically from the single hex value, and the header text colour is chosen for readability based on the colours luminance. Optional Quarto' settings such as a table of contents, code folding, and self-contained output are opt-in arguments rather than imposed defaults.">
+<meta property="og:description" content="Installs a branded Quarto HTML extension (format: dept-html) into your project with one function call. Four department themes are provided: lshtm(), lshtm_mrcg(), and lshtm_mrcu() for LSHTM and its MRC Gambia and MRC Uganda units (teal branding) and florey() for the Florey Institute. A generic custom() theme accepts any logo and base colour: lighter and paler tints are derived automatically from the single hex value, and the header text colour is chosen for readability based on the colours luminance. Optional Quarto' settings such as a table of contents, code folding, and self-contained output are opt-in arguments rather than imposed defaults.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -49,18 +49,22 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="usedepartmenttheme">usedepartmenttheme<a class="anchor" aria-label="anchor" href="#usedepartmenttheme"></a>
 </h1></div>
-<p>A quick and easy way to format your <a href="https://quarto.org/" class="external-link">Quarto</a> documents with you academic department’s theme and you standard Quarto preferences. You set these once and then they are applied by a simple tweak to the YAML. The package currently has three default themes build in plus a function to supply your own logo and colour scheme. To have your department added to this package please either add it yourself with a pull request or open an issue on the <a href="https://github.com/jackwgoodall/usedepartmenttheme" class="external-link">GitHub page</a>.</p>
+<!-- badges: start -->
+
+<p>A quick and easy way to format your <a href="https://quarto.org/" class="external-link">Quarto</a> documents with you academic department’s theme and you standard Quarto preferences. You set these once and then they are applied by a simple tweak to the YAML. The package currently has four default themes build in plus a function to supply your own logo and colour scheme. To have your department added to this package please either add it yourself with a pull request or open an issue on the <a href="https://github.com/jackwgoodall/usedepartmenttheme" class="external-link">GitHub page</a>.</p>
 <div class="section level2">
 <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
 </h2>
 <table class="table">
 <colgroup>
-<col width="25%">
-<col width="25%">
-<col width="25%">
-<col width="25%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
 </colgroup>
 <thead><tr>
+<th>Department</th>
 <th>Function</th>
 <th>Format key</th>
 <th>Header</th>
@@ -68,24 +72,35 @@
 </tr></thead>
 <tbody>
 <tr>
+<td>LSHTM (main)</td>
 <td><code><a href="reference/lshtm.html">usedepartmenttheme::lshtm()</a></code></td>
 <td><code>lshtm-html</code></td>
 <td>Teal, white text</td>
 <td><code>#0D5257</code></td>
 </tr>
 <tr>
+<td>LSHTM (MRC Unit The Gambia)</td>
 <td><code><a href="reference/lshtm_mrcg.html">usedepartmenttheme::lshtm_mrcg()</a></code></td>
 <td><code>lshtm-mrcg-html</code></td>
 <td>Teal, white text</td>
 <td><code>#0D5257</code></td>
 </tr>
 <tr>
+<td>LSHTM (MRC Unit Uganda</td>
+<td><code><a href="reference/lshtm_mrcu.html">usedepartmenttheme::lshtm_mrcu()</a></code></td>
+<td><code>lshtm-mrcu-html</code></td>
+<td>Teal, white text</td>
+<td><code>#0D5257</code></td>
+</tr>
+<tr>
+<td>The Florey Institute of Infection</td>
 <td><code><a href="reference/florey.html">usedepartmenttheme::florey()</a></code></td>
 <td><code>florey-html</code></td>
 <td>Black, white text</td>
 <td><code>#1a1a1a</code></td>
 </tr>
 <tr>
+<td>Generic</td>
 <td><code><a href="reference/custom.html">usedepartmenttheme::custom()</a></code></td>
 <td><code>&lt;name&gt;-html</code></td>
 <td>Derived from your colour</td>
@@ -102,7 +117,7 @@
 <blockquote>
 <p><strong>Quarto branding:</strong> <a href="https://quarto.org/docs/reference/metadata/brand.html" class="external-link uri">https://quarto.org/docs/reference/metadata/brand.html</a></p>
 </blockquote>
-<p><code>usedepartmenttheme</code> exists to streamline this as an installable Quarto extension, so collaborators can render with a single <code>format:</code> key and no per-project setup.</p>
+<p><code>usedepartmenttheme</code> exists to streamline this as an installable Quarto extension, so you and your collaborators can render with a single <code>format:</code> key and no per-project setup.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -118,6 +133,7 @@
 <code class="sourceCode R"><span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/custom.html">custom</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"#003865"</span><span class="op">)</span>   <span class="co"># any organisation</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm.html">lshtm</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm_mrcg.html">lshtm_mrcg</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/lshtm_mrcu.html">lshtm_mrcu</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">usedepartmenttheme</span><span class="fu">::</span><span class="fu"><a href="reference/florey.html">florey</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Each installs its own <code>_extensions/&lt;dept&gt;/</code> folder. If you commit this to version control collaborators can render the same output without the package installed.</p>
 <div class="section level3">
@@ -242,7 +258,7 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Resistance Profiles"</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"MRC Gambia — 2024/25"</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> lshtm-html</span><span class="co">        # or lshtm-mrcg-html / florey-html / &lt;your-custom&gt;-html</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> lshtm-html</span><span class="co">        # or lshtm-mrcg-html / lshtm-mrcu-html / florey-html / &lt;your-custom&gt;-html</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="per-document-overrides">Per-document overrides<a class="anchor" aria-label="anchor" href="#per-document-overrides"></a>
@@ -259,7 +275,7 @@
 <pre><code>your-project/
 ├── analysis.qmd
 └── _extensions/
-    └── lshtm/               # or florey/, lshtm_mrcg/, or your custom name
+    └── lshtm/               # or florey/, lshtm_mrcg/, lshtm_mrcu/, or your custom name
         ├── _extension.yml
         └── resources/
             ├── theme.scss
@@ -310,7 +326,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>

@@ -3,9 +3,10 @@
 ## usedepartmenttheme 0.1.0
 
 - Initial release.
-- Three built-in department themes:
+- Four built-in department themes:
   [`lshtm()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm.md),
   [`lshtm_mrcg()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcg.md),
+  [`lshtm_mrcu()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcu.md),
   and
   [`florey()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/florey.md).
 - Generic

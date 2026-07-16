@@ -10,3 +10,5 @@
   : Install the LSHTM Quarto theme
 - [`lshtm_mrcg()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcg.md)
   : Install the LSHTM / MRC Gambia (joint-branded) Quarto theme
+- [`lshtm_mrcu()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcu.md)
+  : Install the LSHTM / MRC Uganda (joint-branded) Quarto theme

@@ -3,6 +3,7 @@
 The generic counterpart to the built-in department themes
 ([`lshtm()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm.md),
 [`lshtm_mrcg()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcg.md),
+[`lshtm_mrcu()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcu.md),
 [`florey()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/florey.md)).
 Supply your own logo and a single base colour and the package works out
 the rest:
@@ -13,6 +14,7 @@ the rest:
 custom(
   colour,
   logo = NULL,
+  favicon = NULL,
   name = "custom",
   title = NULL,
   path = ".",
@@ -43,6 +45,11 @@ custom(
 
   Path to a PNG, SVG, or JPEG logo file. If `NULL`, the header bar is
   rendered without a logo.
+
+- favicon:
+
+  Optional path to a dedicated favicon image. If `NULL`, the logo is
+  used as the favicon (and there is none when no logo is supplied).
 
 - name:
 

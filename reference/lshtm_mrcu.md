@@ -1,14 +1,14 @@
-# Install the LSHTM / MRC Gambia (joint-branded) Quarto theme
+# Install the LSHTM / MRC Uganda (joint-branded) Quarto theme
 
 Identical colours to
 [`lshtm()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm.md)
-but uses a separate logo slot. Use `format: lshtm-mrcg-html` in your
-`.qmd` YAML.
+but uses a separate logo slot for the MRC/UVRI & LSHTM Uganda Research
+Unit. Use `format: lshtm-mrcu-html` in your `.qmd` YAML.
 
 ## Usage
 
 ``` r
-lshtm_mrcg(
+lshtm_mrcu(
   path = ".",
   logo = NULL,
   favicon = NULL,
@@ -118,6 +118,6 @@ per-document in your `.qmd` YAML.
 
 ``` r
 if (FALSE) { # \dontrun{
-usedepartmenttheme::lshtm_mrcg(path = "~/projects/my-analysis")
+usedepartmenttheme::lshtm_mrcu(path = "~/projects/my-analysis")
 } # }
 ```

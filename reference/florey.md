@@ -9,6 +9,7 @@ your `.qmd` YAML.
 florey(
   path = ".",
   logo = NULL,
+  favicon = NULL,
   colour = "#1a1a1a",
   overwrite = FALSE,
   toc = NULL,
@@ -37,6 +38,12 @@ florey(
 
   Path to a PNG, SVG, or JPEG logo file. If `NULL`, the bundled LSHTM
   placeholder logo is used.
+
+- favicon:
+
+  Optional path to a dedicated favicon image (PNG, SVG, ICO, ...). If
+  `NULL`, a bundled `favicon.png` for the department is used when
+  present, otherwise the logo doubles as the favicon.
 
 - colour:
 

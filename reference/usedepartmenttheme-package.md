@@ -1,7 +1,7 @@
 # usedepartmenttheme: Quarto HTML themes for LSHTM departments
 
 Installs a branded Quarto HTML extension (`format: dept-html`) into your
-project with one function call. Three department themes are provided,
+project with one function call. Four department themes are provided,
 plus a generic option:
 
 ## Details
@@ -11,6 +11,9 @@ plus a generic option:
 
 - [`lshtm_mrcg()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcg.md)
   — LSHTM / MRC Gambia joint branding, same teal
+
+- [`lshtm_mrcu()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/lshtm_mrcu.md)
+  — LSHTM / MRC Uganda joint branding, same teal
 
 - [`florey()`](https://jackwgoodall.github.io/usedepartmenttheme/reference/florey.md)
   — Florey Institute black header, white logo
@@ -33,6 +36,17 @@ Much of this can also be achieved with Quarto's own branding support
 packages a few opinionated department themes as an installable extension
 so collaborators can render with a single `format:` key and no
 per-project setup.
+
+## See also
+
+Useful links:
+
+- <https://github.com/jackwgoodall/usedepartmenttheme>
+
+- <https://jackwgoodall.github.io/usedepartmenttheme/>
+
+- Report bugs at
+  <https://github.com/jackwgoodall/usedepartmenttheme/issues>
 
 ## Author
 
