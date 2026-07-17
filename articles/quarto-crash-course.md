@@ -2,21 +2,10 @@
 
 ## Overview
 
-This is a crash course in [Quarto](https://quarto.org) — the
-next-generation, multi-language successor to R Markdown — and a guide to
+This is a crash course in [Quarto](https://quarto.org) alongside
 applying your department’s branding with the
 [**usedepartmenttheme**](https://github.com/jackwgoodall/usedepartmenttheme)
 package.
-
-Although it is aimed at users of `usedepartmenttheme`, I hope it is of
-broader interest, and anyone is welcome to use and adapt it. It has
-three aims:
-
-1.  To show what a `usedepartmenttheme` document looks like when
-    rendered.
-2.  To explain how to install, use, and customise the themes.
-3.  To provide a tutorial on Quarto for people who know R but are new to
-    Quarto (or coming from R Markdown).
 
 If you are new to markdown, I also hope to convert you: Quarto is a
 powerful way to communicate pre-publication research findings with
@@ -24,10 +13,11 @@ colleagues and collaborators, wrapping a narrative around your data and
 code.
 
 If you are already comfortable with R Markdown or Quarto, the [Applying
-a theme](#applying-a-department-theme) section is all you need to get
-going. If you are new to it, I suggest reading through in order. If you
-don’t care about the `usedepartmenttheme` you can skip to [Anatomy of a
-Quarto document](#anatomy).
+a theme](#applying-a-department-theme) section (or the main package
+functions) are all you need to get going. If you are new to it, I
+suggest reading through in order. If you don’t care about the
+`usedepartmenttheme` you can skip to [Anatomy of a Quarto
+document](#anatomy).
 
 For more depth (including how to make PDFs, Word documents, books,
 websites, or dashboards) the [Quarto
