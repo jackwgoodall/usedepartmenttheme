@@ -10,3 +10,16 @@ check_working*
 **/*.quarto_ipynb
 .claude
 docs
+
+# Rendered docs and Quarto/R Markdown render artifacts
+README.html
+*_files/
+_freeze/
+
+# Scratch theme installs / Quarto project files created by running the
+# install functions in the package root (real source is inst/formats/dept/)
+_extensions/
+_quarto.yml
+
+# Stray scratch render folder (the package's real test dir is tests/)
+/test/

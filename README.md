@@ -5,7 +5,7 @@
 [![R-CMD-check](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jackwgoodall/usedepartmenttheme/actions/workflows/pkgdown.yaml)
 [![codecov](https://codecov.io/gh/jackwgoodall/usedepartmenttheme/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jackwgoodall/usedepartmenttheme)
-[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.21412728?labelColor=000000)](https://doi.org/10.5281/zenodo.21412728)
 <!-- badges: end -->
 
 A quick and easy way to format your [Quarto](https://quarto.org/) documents with you academic department's theme and you standard Quarto preferences. 
